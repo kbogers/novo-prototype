@@ -2,6 +2,7 @@
 
 ## Completed
 
+- **Hover affordances (Mar 2026):** Stronger color-only hovers (no shadows or lift): nav links and inactive role tabs shift to `--color-line` (`#005cda`); primary buttons use a lighter navy (`--color-navy-hover`); trial list rows use a more visible sky-tinted row background (`--color-trial-row-hover`).
 - **Landing page (Mar 2025):** Static stack (`index.html`, `styles.css`, `app.js`) implementing Figma frames `41:1286` (patients) and `41:1350` (physicians). Audience switcher via tabs; typography/colors from design (Noto Sans, `#001a69`, `#dff1fb`). Image assets copied into `assets/` from Figma MCP URLs (time-limited remote URLs replaced for durability). `design-tokens.json` intentionally not wired in.
 - **Step badges (Mar 2026):** “How it works” step markers are HTML (`span.step__badge` with 1–3) + CSS circles instead of PNGs (`step-1.png` … `step-3-phys.png`), keeping 42×42px and `aria-hidden` on the decorative number (list semantics stay on the `<ol>`).
 - **Physician trial card icons (Mar 2026):** Google Material Symbols Outlined, one glyph per row by content (`water_drop`, `bloodtype`, `science`, `view_list`; NDec row uses `science` instead of `microscope` to avoid `mic`/microphone ligature clash) via fonts.googleapis.com instead of PNGs in the trial list.
@@ -12,5 +13,5 @@
 ## Decisions
 
 - **Git / GitHub (Mar 2026):** Repository is scoped to this folder only (`git init` here), not the parent `Documents` tree. Remote: `https://github.com/kbogers/novo-prototype` (`main`). Added `.gitignore` for `.DS_Store`.
-- Nav links scroll within the **active** panel only (`data-scroll-section` + `data-scroll-target`). Patient panel ends after “How it works” (no trials/FAQs placeholders). Physician panel still has FAQ placeholder below “How it works”.
+- Nav links scroll within the **active** panel only (`data-scroll-section` + `data-scroll-target`). Patient panel ends after “How it works” (no trials/FAQs placeholders). Physician panel ends after “How it works” (FAQ placeholder removed Mar 2026).
 - **Features (“How it works”):** Header and steps list are left-aligned within `features__inner` (not centered) for clearer reading flow.

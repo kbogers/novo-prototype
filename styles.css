@@ -8,6 +8,8 @@
   --color-border-light: #e9edf1;
   --color-white: #ffffff;
   --color-line: #005cda;
+  --color-navy-hover: #002d8c;
+  --color-trial-row-hover: #e4eef8;
   --font: "Noto Sans", system-ui, sans-serif;
   --max-content: 1440px;
   --header-h: 100px;
@@ -112,10 +114,12 @@ body {
   min-height: 80px;
   display: inline-flex;
   align-items: center;
+  transition: color 0.15s ease;
 }
 
 .site-nav__link:hover,
 .site-nav__link:focus-visible {
+  color: var(--color-line);
   text-decoration: underline;
   outline: none;
 }
@@ -157,10 +161,11 @@ body {
   color: var(--color-muted);
   border-bottom: 3px solid transparent;
   margin-bottom: -1px;
+  transition: color 0.15s ease;
 }
 
-.role-tab:hover {
-  color: var(--color-navy);
+.role-tab:hover:not(.role-tab--active) {
+  color: var(--color-line);
 }
 
 .role-tab--active {
@@ -277,7 +282,7 @@ body {
 }
 
 .trial-card__row:hover {
-  background: #fafcfd;
+  background: var(--color-trial-row-hover);
 }
 
 .trial-card__icon {
@@ -339,7 +344,7 @@ body {
   border: none;
   cursor: pointer;
   text-decoration: none;
-  transition: opacity 0.15s ease, transform 0.1s ease;
+  transition: background-color 0.15s ease, transform 0.1s ease;
 }
 
 .btn--primary {
@@ -348,7 +353,7 @@ body {
 }
 
 .btn--primary:hover {
-  opacity: 0.92;
+  background: var(--color-navy-hover);
 }
 
 .btn--primary:active {
