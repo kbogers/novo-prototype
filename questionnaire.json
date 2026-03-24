@@ -1,0 +1,122 @@
+{
+  "flowId": "eligibility-v2",
+  "sidebarTitle": "Medical intake",
+  "sidebarSubtitle": "Rare blood disease",
+  "secureNote": "Information is captured and stored securely",
+  "completionTitle": "Thank you",
+  "completionBody": "Your responses have been saved for this session. A member of our team may follow up if you appear to match a study.",
+  "steps": [
+    {
+      "id": "respondent-role",
+      "type": "radio",
+      "title": "Are you the patient or the caregiver?",
+      "subtitle": null,
+      "whyAsk": "We tailor questions and follow-up to the person completing this form.",
+      "required": true,
+      "showSkip": false,
+      "options": [
+        { "value": "patient", "label": "Patient" },
+        { "value": "caregiver", "label": "Caregiver" }
+      ]
+    },
+    {
+      "id": "age",
+      "type": "text",
+      "title": "What is your age?",
+      "subtitle": null,
+      "whyAsk": "Age eligibility is set by each protocol and regulatory requirements.",
+      "required": true,
+      "showSkip": false,
+      "placeholder": "Enter your age",
+      "inputMode": "text"
+    },
+    {
+      "id": "diagnosis",
+      "type": "select",
+      "title": "Which rare blood disease applies?",
+      "subtitle": "Choose the condition that best matches the diagnosis.",
+      "whyAsk": "We match you to trials that enroll people with specific conditions.",
+      "required": true,
+      "showSkip": true,
+      "placeholder": "Select a condition",
+      "options": [
+        { "value": "sickle-cell-disease", "label": "Sickle cell disease" },
+        { "value": "beta-thalassemia", "label": "Beta thalassemia" },
+        { "value": "alpha-thalassemia", "label": "Alpha thalassemia" },
+        { "value": "hemophilia-a", "label": "Hemophilia A" },
+        { "value": "hemophilia-b", "label": "Hemophilia B" },
+        { "value": "von-willebrand-disease", "label": "Von Willebrand disease" },
+        { "value": "aplastic-anemia", "label": "Aplastic anemia" },
+        { "value": "paroxysmal-nocturnal-hemoglobinuria", "label": "Paroxysmal nocturnal hemoglobinuria (PNH)" },
+        { "value": "immune-thrombocytopenia", "label": "Immune thrombocytopenia (ITP)" },
+        { "value": "hereditary-spherocytosis", "label": "Hereditary spherocytosis" },
+        { "value": "fanconi-anemia", "label": "Fanconi anemia" },
+        { "value": "diamond-blackfan-anemia", "label": "Diamond-Blackfan anemia" },
+        { "value": "myelodysplastic-syndrome", "label": "Myelodysplastic syndrome (MDS)" },
+        { "value": "polycythemia-vera", "label": "Polycythemia vera" },
+        { "value": "essential-thrombocythemia", "label": "Essential thrombocythemia" },
+        { "value": "hereditary-hemochromatosis", "label": "Hereditary hemochromatosis" },
+        { "value": "cold-agglutinin-disease", "label": "Cold agglutinin disease" },
+        { "value": "other", "label": "Other / not listed" }
+      ]
+    },
+    {
+      "id": "treatments",
+      "type": "textarea",
+      "title": "What treatments have you received and are currently receiving for your diagnosis?",
+      "subtitle": "Please include medications, therapies (including clinical trials) and procedures as applicable.",
+      "whyAsk": "Inclusion criteria often depend on prior or current treatment.",
+      "required": true,
+      "showSkip": true,
+      "placeholder": "",
+      "rows": 6
+    },
+    {
+      "id": "contact-pref",
+      "type": "radio",
+      "title": "How would you prefer to be contacted if you may be a match?",
+      "subtitle": null,
+      "required": true,
+      "showSkip": false,
+      "options": [
+        { "value": "phone", "label": "Phone" },
+        { "value": "email", "label": "Email" },
+        { "value": "either", "label": "Either" }
+      ]
+    },
+    {
+      "id": "contact",
+      "type": "contact",
+      "title": "Your contact details",
+      "subtitle": "We will only use this information to reach you about your inquiry.",
+      "whyAsk": "Our team needs a way to follow up if you may match a study.",
+      "required": true,
+      "showSkip": false,
+      "fields": [
+        {
+          "id": "name",
+          "label": "Full name",
+          "placeholder": "First and last name",
+          "inputType": "text",
+          "autocomplete": "name"
+        },
+        {
+          "id": "email",
+          "label": "Email",
+          "placeholder": "name@example.com",
+          "inputType": "email",
+          "autocomplete": "email",
+          "inputMode": "email"
+        },
+        {
+          "id": "phone",
+          "label": "Phone number",
+          "placeholder": "Include country code if outside your home country",
+          "inputType": "tel",
+          "autocomplete": "tel",
+          "inputMode": "tel"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medical intake — Eligibility</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="intake-page">
+    <a href="#main-intake" class="skip-link">Skip to content</a>
+
+    <header class="site-header intake-header">
+      <div class="site-header__inner intake-header__inner">
+        <a href="index.html" class="site-logo" aria-label="myTomorrows home">
+          <img src="assets/logo-mytomorrows.svg" alt="" width="310" height="39" />
+        </a>
+        <a href="index.html" class="intake-header__back">Back to clinical trials</a>
+      </div>
+    </header>
+
+    <main id="main-intake" class="intake">
+      <div class="intake__inner">
+        <aside class="intake-sidebar" aria-labelledby="intake-sidebar-title">
+          <div class="intake-sidebar__brand">
+            <a href="index.html" class="intake-sidebar__logo-link" aria-label="Novo Nordisk clinical trials home">
+              <img src="assets/logo.svg" alt="" class="intake-sidebar__logo" width="104" height="74" />
+            </a>
+          </div>
+          <h2 id="intake-sidebar-title" class="intake-sidebar__title"></h2>
+          <p id="intake-sidebar-subtitle" class="intake-sidebar__subtitle"></p>
+        </aside>
+
+        <div class="intake-stack">
+          <section class="intake-card" aria-labelledby="intake-step-label">
+            <div class="intake-card__progress" role="progressbar" aria-valuemin="1" aria-valuemax="1" aria-valuenow="1" aria-label="Question progress" id="intake-progress">
+              <div class="intake-card__progress-fill" id="intake-progress-fill"></div>
+            </div>
+
+            <div class="intake-card__body" id="intake-active-panel">
+              <p class="intake-card__step" id="intake-step-label">Question 1 of 1</p>
+
+              <div class="intake-card__copy">
+                <h1 class="intake-card__title" id="intake-title"></h1>
+                <p class="intake-card__subtitle" id="intake-subtitle" hidden></p>
+                <details class="intake-why" id="intake-why" hidden>
+                  <summary class="intake-why__summary">
+                    <span class="intake-why__icon material-symbols-outlined" aria-hidden="true">info</span>
+                    Why do we ask this?
+                  </summary>
+                  <p class="intake-why__body" id="intake-why-text"></p>
+                </details>
+              </div>
+
+              <div class="intake-card__field" id="intake-input-root"></div>
+
+              <footer class="intake-card__footer">
+                <button type="button" class="intake-footer__back" id="intake-back">
+                  <span class="material-symbols-outlined" aria-hidden="true">keyboard_arrow_left</span>
+                  Back
+                </button>
+                <div class="intake-footer__right">
+                  <button type="button" class="intake-footer__skip" id="intake-skip" hidden>
+                    Skip
+                  </button>
+                  <button type="button" class="intake-footer__continue" id="intake-continue" disabled>
+                    Continue
+                  </button>
+                </div>
+              </footer>
+            </div>
+
+            <div class="intake-card__body intake-complete" id="intake-complete" hidden>
+              <h1 class="intake-card__title" id="intake-complete-title"></h1>
+              <p class="intake-card__subtitle intake-complete__body" id="intake-complete-body"></p>
+              <p class="intake-card__step">
+                <a href="index.html" class="intake-complete__link">Return to clinical trials</a>
+              </p>
+            </div>
+          </section>
+
+          <div class="intake-secure">
+            <span class="material-symbols-outlined intake-secure__icon" aria-hidden="true">lock</span>
+            <p class="intake-secure__text" id="intake-secure-note"></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="questionnaire.js"></script>
+  </body>
+</html>
