@@ -18,7 +18,7 @@
     {
       "id": "respondent-role",
       "type": "radio",
-      "title": "Are you the patient or the caregiver?",
+      "title": "Are you the patient or a caregiver?",
       "subtitle": null,
       "whyAsk": "We tailor questions and follow-up to the person completing this form.",
       "required": true,
@@ -44,8 +44,8 @@
     {
       "id": "diagnosis",
       "type": "select",
-      "title": "Which rare blood disease applies?",
-      "subtitle": "Choose the condition that best matches the diagnosis.",
+      "title": "Which rare blood disease do you have?",
+      "subtitle": "Please choose the option that best matches your diagnosis.",
       "whyAsk": "We match you to trials that enroll people with specific conditions.",
       "required": true,
       "showSkip": true,
@@ -74,8 +74,8 @@
     {
       "id": "treatments",
       "type": "textarea",
-      "title": "What treatments have you received and are currently receiving for your diagnosis?",
-      "subtitle": "Please include medications, therapies (including clinical trials) and procedures as applicable.",
+      "title": "Which treatments have you received for your condition, and which are you currently receiving?",
+      "subtitle": "Please include medications, therapies (including clinical trials) and procedures.",
       "whyAsk": "Inclusion criteria often depend on prior or current treatment.",
       "required": true,
       "showSkip": true,

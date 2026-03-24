@@ -37,6 +37,8 @@
   --fs-body-2: 14px;
   --fs-headline-3: 32px;
   --fs-headline-4: 28px;
+  --fs-headline-5: 24px;
+  --fs-headline-6: 20px;
   --fs-button: 15px;
   --lh-button: 24px;
 }
@@ -595,7 +597,7 @@ body#top .site-logo img {
 .intake-sidebar__title {
   margin: 0 0 var(--space-2);
   font-weight: 600;
-  font-size: var(--fs-headline-4);
+  font-size: var(--fs-headline-6);
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--color-text);

@@ -2,6 +2,7 @@
 
 ## Completed
 
+- **Intake sidebar title (Mar 2026):** `#intake-sidebar-title` (`.intake-sidebar__title`) uses `--fs-headline-6` (20px); `--fs-headline-5`/`--fs-headline-6` added in `:root` to match `design-tokens.json` desktop headline scale.
 - **Age field width (Mar 2026):** The `age` text step uses optional JSON `inputWidth: "chunk"` plus `maxLength: 3` and `inputMode: "numeric"`. CSS class `.intake-input--chunk` caps width with `ch` + horizontal padding so the control matches ~3 digits instead of full-row `width: 100%`.
 - **Questionnaire opening steps (Mar 2026):** First step is patient vs caregiver (`respondent-role`); second is free-text age (`age`). Replaced the prior 18+ yes/no gate and the old diagnosis-as-second-step ordering.
 - **Questionnaire select (Mar 2026):** Step 3 (`diagnosis`) uses JSON `type: "select"` (native `<select>`) with a fixed list of rare blood diseases; `questionnaire.js` validates `select` like `radio`. Selects use `width: max-content` with `max-width: 100%`. The chevron is a custom SVG background (`appearance: none`) so spacing from the border is not controlled by the OS native arrow (which ignores padding).
