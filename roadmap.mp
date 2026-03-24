@@ -11,5 +11,6 @@
 
 ## Decisions
 
+- **Git / GitHub (Mar 2026):** Repository is scoped to this folder only (`git init` here), not the parent `Documents` tree. Remote: `https://github.com/kbogers/novo-prototype` (`main`). Added `.gitignore` for `.DS_Store`.
 - Nav links scroll within the **active** panel only (`data-scroll-section` + `data-scroll-target`). Patient panel ends after “How it works” (no trials/FAQs placeholders). Physician panel still has FAQ placeholder below “How it works”.
 - **Features (“How it works”):** Header and steps list are left-aligned within `features__inner` (not centered) for clearer reading flow.
