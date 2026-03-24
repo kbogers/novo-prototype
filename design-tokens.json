@@ -1,0 +1,217 @@
+{
+    "$comment": "Exported from myTomorrows frontend — snapshot only, not generated from the repo",
+    "meta": {
+      "sources": [
+        "libs/shared/ui/styles/colors/colors-variables.scss",
+        "libs/shared/ui/styles/variables.scss",
+        "libs/shared/ui/components/myt-preset.js",
+        "libs/shared/ui/styles/typography/typography.scss",
+        "libs/widgets/shared/ui/src/lib/styles/variables/colors.ts",
+        "libs/widgets/shared/ui/src/lib/styles/variables/spacing.ts"
+      ],
+      "notes": [
+        "neutral.50: #f5f6f6 (SCSS) vs #F6F6F6 (Tailwind preset + Lit) — pick one for the prototype.",
+        "white: #fdfdfd (SCSS/Tailwind) vs #FFFFFF (Lit colorWhite).",
+        "Semantic text/heading color in SCSS: text-color / primary-950 = #012d20.",
+        "Mobile typography overrides in SCSS only apply to display/headline sizes at max-width 768px (see typography.mobileOverrides)."
+      ]
+    },
+    "color": {
+      "base": {
+        "white": "#fdfdfd",
+        "black": "#000000"
+      },
+      "semantic": {
+        "secondary": "#acf06a",
+        "bgDisabled": "#f2f3ef",
+        "bgNeutral": "#f5f6f6",
+        "bgDisabledInput": "#e5e8e7",
+        "border": "#dee1e0",
+        "borderHover": "#4a5452",
+        "elevation1": "#cdd4d2",
+        "elevation2": "#aab6b3",
+        "elevation3": "#80908b",
+        "textNeutral": "#414947",
+        "textSubdued": "#aab6b3",
+        "text": "#012d20"
+      },
+      "palette": {
+        "primary": {
+          "50": "#f1fcf6",
+          "100": "#d4f6e2",
+          "200": "#a4ebc1",
+          "300": "#73d9a0",
+          "400": "#4bcb87",
+          "500": "#0bba6e",
+          "600": "#009b60",
+          "700": "#007c50",
+          "800": "#036240",
+          "900": "#045037",
+          "950": "#012d20"
+        },
+        "accent": {
+          "50": "#f0f8ff",
+          "100": "#e2f1ff",
+          "200": "#c2e2ff",
+          "300": "#8ec7fb",
+          "400": "#61b3ff",
+          "500": "#2d91ee",
+          "600": "#0771d2",
+          "700": "#095fad",
+          "800": "#054c8f",
+          "900": "#053e72",
+          "950": "#02274a"
+        },
+        "warn": {
+          "50": "#fef9ec",
+          "100": "#fcedc9",
+          "200": "#f8d98f",
+          "300": "#f5c054",
+          "400": "#f2a82d",
+          "500": "#e78413",
+          "600": "#d1630e",
+          "700": "#ad4510",
+          "800": "#8d3513",
+          "900": "#742d13",
+          "950": "#421506"
+        },
+        "error": {
+          "50": "#fef2f2",
+          "100": "#fde3e3",
+          "200": "#fdcbcb",
+          "300": "#faa7a7",
+          "400": "#f57474",
+          "500": "#eb4848",
+          "600": "#cf2626",
+          "700": "#b52020",
+          "800": "#961e1e",
+          "900": "#7d1f1f",
+          "950": "#440b0b"
+        },
+        "info": {
+          "50": "#f9f7fc",
+          "100": "#f3edfa",
+          "200": "#e7dbf3",
+          "300": "#d5bee9",
+          "400": "#be98da",
+          "500": "#9f6ec7",
+          "600": "#844faa",
+          "700": "#764497",
+          "800": "#5b3573",
+          "900": "#4e305f",
+          "950": "#2e163c"
+        },
+        "neutral": {
+          "50": "#f5f6f6",
+          "100": "#ededed",
+          "150": "#e1e1e1",
+          "200": "#d1d1d1",
+          "300": "#b9bab9",
+          "400": "#919392",
+          "500": "#7c7e7c",
+          "600": "#666967",
+          "700": "#4c504e",
+          "800": "#3e423f",
+          "900": "#313431",
+          "950": "#242825"
+        }
+      },
+      "aliases": {
+        "primary": "#007c50",
+        "accent": "#095fad",
+        "warning": "#ad4510",
+        "error": "#b52020",
+        "info": "#764497",
+        "neutral": "#4c504e"
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "default": "'Inter', Arial, sans-serif",
+        "inter": ["Inter", "Arial", "sans-serif"],
+        "dmSerifDisplay": ["DM_Serif_Display", "Arial", "sans-serif"],
+        "gtWalsheim": ["GT_Walsheim", "Arial", "sans-serif"],
+        "ibmPlexMono": ["IBM_Plex_Mono", "monospace"]
+      },
+      "unit": "4px",
+      "roles": {
+        "desktop": {
+          "headline-1": { "fontSize": "48px", "lineHeight": 1.2, "letterSpacing": "-0.5px", "fontWeight": 600 },
+          "headline-2": { "fontSize": "40px", "lineHeight": 1.2, "letterSpacing": "-0.25px", "fontWeight": 600 },
+          "headline-3": { "fontSize": "32px", "lineHeight": 1.2, "letterSpacing": "-0.25px", "fontWeight": 600 },
+          "headline-4": { "fontSize": "28px", "lineHeight": 1.2, "letterSpacing": "0px", "fontWeight": 600 },
+          "headline-5": { "fontSize": "24px", "lineHeight": 1.2, "letterSpacing": "-0.5px", "fontWeight": 600 },
+          "headline-6": { "fontSize": "20px", "lineHeight": 1.2, "letterSpacing": "-0.5px", "fontWeight": 600 },
+          "subtitle-1": { "fontSize": "18px", "lineHeight": 1.2, "letterSpacing": "0px", "fontWeight": 500 },
+          "subtitle-2": { "fontSize": "16px", "lineHeight": 1.2, "letterSpacing": "0px", "fontWeight": 500 },
+          "body-1": { "fontSize": "15px", "lineHeight": "20px", "letterSpacing": "0px", "fontWeight": 400 },
+          "body-2": { "fontSize": "14px", "lineHeight": "18px", "letterSpacing": "0px", "fontWeight": 400 },
+          "caption": { "fontSize": "12px", "lineHeight": "16px", "letterSpacing": "0px", "fontWeight": 400 },
+          "button": { "fontSize": "15px", "lineHeight": "24px", "letterSpacing": "0px", "fontWeight": 500 },
+          "labelSmall": { "fontSize": "10px", "lineHeight": "16px", "letterSpacing": "0px", "fontWeight": 500, "note": "SCSS: caption size minus 2px" }
+        },
+        "mobile": {
+          "media": "max-width: 768px",
+          "headline-1": { "fontSize": "38px", "lineHeight": 1.2 },
+          "headline-2": { "fontSize": "32px", "lineHeight": 1.2 },
+          "headline-3": { "fontSize": "28px", "lineHeight": 1.2 },
+          "headline-4": { "fontSize": "24px", "lineHeight": 1.2 },
+          "headline-5": { "fontSize": "22px", "lineHeight": 1.2 },
+          "headline-6": { "fontSize": "20px", "lineHeight": 1.2 },
+          "note": "SCSS only overrides display/headline sizes on small screens; subtitle/body/caption/button use desktop values unless you mirror full :root rules."
+        }
+      },
+      "tailwindExtras": {
+        "fontSize": {
+          "5.5xl": "3.375rem",
+          "4.5xl": "2.5rem",
+          "regular": "0.938rem",
+          "1.5xl": "1.375rem"
+        },
+        "lineHeight": {
+          "4.5": "1.125rem"
+        }
+      }
+    },
+    "layout": {
+      "breakpoints": {
+        "tailwind": {
+          "sm": "480px",
+          "md": "750px",
+          "lg": "1024px",
+          "xl": "1280px"
+        },
+        "scss": {
+          "maxScreenWidth": "1440px",
+          "tabletScreenWidth": "750px",
+          "mobileScreenWidth": "430px"
+        }
+      },
+      "tailwindSizing": {
+        "width": { "112": "28rem" },
+        "minWidth": { "112": "28rem" },
+        "maxWidth": { "128": "32rem" }
+      }
+    },
+    "spacing": {
+      "scale": {
+        "1": "4px",
+        "2": "8px",
+        "3": "12px",
+        "4": "16px",
+        "5": "20px",
+        "6": "24px",
+        "7": "28px",
+        "8": "32px"
+      },
+      "source": "Lit widgets spacing.ts; aligns with 4px base unit"
+    },
+    "effects": {
+      "backgroundImage": {
+        "titleSkeleton": "linear-gradient(90deg, rgba(205, 212, 210, 0.75) 4.45%, rgba(255, 255, 255, 0.75) 23.89%, rgba(205, 212, 210, 0.75) 44.93%)",
+        "patientHomeCard1": "url(/assets/images/bg-patient-home-card-1.webp)",
+        "patientHomeCard2": "url(/assets/images/bg-patient-home-card-2.webp)"
+      },
+      "note": "Box shadows are largely from Angular Material theme (--mat-sys-*), not centralized as named tokens in shared SCSS; not expanded here."
+    }
+  }

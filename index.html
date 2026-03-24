@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Novo Nordisk — Clinical trials</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body id="top">
+    <a href="#main" class="skip-link">Skip to content</a>
+
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a href="#top" class="site-logo" aria-label="Novo Nordisk home">
+          <img src="assets/logo.svg" alt="" width="104" height="74" />
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="#top" class="site-nav__link" data-scroll-target="hero">About</a>
+          <a href="#top" class="site-nav__link" data-scroll-target="how-it-works">How it works</a>
+          <a href="#top" class="site-nav__link" data-scroll-target="trials">Our trials</a>
+          <a href="#top" class="site-nav__link" data-scroll-target="faqs">FAQs</a>
+        </nav>
+        <button type="button" class="btn btn--primary site-header__cta">Eligibility check</button>
+      </div>
+    </header>
+
+    <div class="role-tabbar" role="tablist" aria-label="Audience">
+      <div class="role-tabbar__inner">
+        <button
+          type="button"
+          class="role-tab role-tab--active"
+          role="tab"
+          id="tab-patients"
+          aria-selected="true"
+          aria-controls="panel-patients"
+          data-panel="patients"
+        >
+          For patients
+        </button>
+        <button
+          type="button"
+          class="role-tab"
+          role="tab"
+          id="tab-physicians"
+          aria-selected="false"
+          aria-controls="panel-physicians"
+          data-panel="physicians"
+        >
+          For physicians
+        </button>
+      </div>
+    </div>
+
+    <main id="main">
+      <!-- Patients -->
+      <section
+        id="panel-patients"
+        class="role-panel"
+        role="tabpanel"
+        aria-labelledby="tab-patients"
+        data-panel-id="patients"
+      >
+        <div class="hero" data-scroll-section="hero">
+          <div class="hero__inner">
+            <div class="hero__copy">
+              <h1 class="hero__title">Discover clinical trials for rare blood disorders</h1>
+              <p class="hero__lead">
+                At Novo Nordisk, our scientists are currently working on novel and innovative
+                treatments to address the unmet needs of people living with rare blood disorders,
+                and other serious chronic diseases.
+              </p>
+              <button type="button" class="btn btn--primary">See if you qualify</button>
+            </div>
+            <div class="hero__media">
+              <img
+                class="hero__image"
+                src="assets/hero-lab.jpg"
+                alt="Researcher using a pipette in a laboratory"
+                width="494"
+                height="370"
+              />
+            </div>
+          </div>
+        </div>
+
+        <section class="features" data-scroll-section="how-it-works">
+          <div class="features__inner">
+            <header class="features__header">
+              <h2 class="features__title">How it works</h2>
+              <p class="features__intro">
+                Taking part in a research study can feel overwhelming. We’ve simplified the first
+                steps to make it as easy as possible to learn more.
+              </p>
+            </header>
+            <div class="steps">
+              <div class="steps__line" aria-hidden="true"></div>
+              <ol class="steps__list">
+                <li class="step">
+                  <span class="step__badge" aria-hidden="true">1</span>
+                  <div class="step__body">
+                    <h3 class="step__title">Share your details</h3>
+                    <p class="step__text">
+                      Start by answering a few questions in our short, confidential online
+                      questionnaire. This helps our team understand if a clinical trial might be a
+                      good fit for you.
+                    </p>
+                  </div>
+                </li>
+                <li class="step">
+                  <span class="step__badge" aria-hidden="true">2</span>
+                  <div class="step__body">
+                    <h3 class="step__title">Check your eligibility</h3>
+                    <p class="step__text">
+                      Our online pre-screener gives you an immediate preliminary check. This saves you
+                      time and helps us connect you with the right people.
+                    </p>
+                  </div>
+                </li>
+                <li class="step">
+                  <span class="step__badge" aria-hidden="true">3</span>
+                  <div class="step__body">
+                    <h3 class="step__title">Talk with a patient navigator</h3>
+                    <p class="step__text">
+                      If you appear to be a potential match, you can then book a free, no-obligation
+                      phone call with a member of our patient navigator team. This call is your
+                      opportunity to ask questions and get more details about our trials, with
+                      absolutely no commitment to join. Support is available in your language, and
+                      interpreters can be provided if needed. Your information is kept private every
+                      step of the way.
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- Physicians -->
+      <section
+        id="panel-physicians"
+        class="role-panel"
+        role="tabpanel"
+        aria-labelledby="tab-physicians"
+        hidden
+        data-panel-id="physicians"
+      >
+        <div class="hero" data-scroll-section="hero">
+          <div class="hero__inner hero__inner--physician">
+            <div class="hero__copy">
+              <h1 class="hero__title">Refer patients to clinical trials for rare blood disorders</h1>
+              <p class="hero__lead">
+                Browse our current clinical trial pipeline, pre-screen your patients with AI and
+                refer them directly to one of our trial sites.
+              </p>
+              <button type="button" class="btn btn--primary">View all recruiting trials</button>
+            </div>
+            <div class="trial-card" data-scroll-section="trials">
+              <ul class="trial-card__list">
+                <li>
+                  <a href="#" class="trial-card__row">
+                    <span class="trial-card__icon" aria-hidden="true">
+                      <span class="material-symbols-outlined trial-card__material-icon">water_drop</span>
+                    </span>
+                    <span class="trial-card__label">Etavopivat (Sickle Cell Disease)</span>
+                    <span class="trial-card__chev" aria-hidden="true">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path
+                          d="M9 6l6 6-6 6"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="trial-card__row">
+                    <span class="trial-card__icon" aria-hidden="true">
+                      <span class="material-symbols-outlined trial-card__material-icon">bloodtype</span>
+                    </span>
+                    <span class="trial-card__label">Etavopivat (Rare Blood Disorders)</span>
+                    <span class="trial-card__chev" aria-hidden="true">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path
+                          d="M9 6l6 6-6 6"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="trial-card__row">
+                    <span class="trial-card__icon" aria-hidden="true">
+                      <span class="material-symbols-outlined trial-card__material-icon">science</span>
+                    </span>
+                    <span class="trial-card__label">NDec (Rare Blood Disorders)</span>
+                    <span class="trial-card__chev" aria-hidden="true">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path
+                          d="M9 6l6 6-6 6"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="trial-card__row trial-card__row--last">
+                    <span class="trial-card__icon" aria-hidden="true">
+                      <span class="material-symbols-outlined trial-card__material-icon">view_list</span>
+                    </span>
+                    <span class="trial-card__label">View all Rare Blood Disorder trials</span>
+                    <span class="trial-card__chev" aria-hidden="true">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path
+                          d="M9 6l6 6-6 6"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <section class="features" data-scroll-section="how-it-works">
+          <div class="features__inner">
+            <header class="features__header">
+              <h2 class="features__title">How it works</h2>
+              <p class="features__intro">
+                We have partnered with myTomorrows to help you easily view, pre-screen and refer your
+                patients. Here are the steps to follow:
+              </p>
+            </header>
+            <div class="steps">
+              <div class="steps__line" aria-hidden="true"></div>
+              <ol class="steps__list">
+                <li class="step">
+                  <span class="step__badge" aria-hidden="true">1</span>
+                  <div class="step__body">
+                    <h3 class="step__title">View active trials</h3>
+                    <p class="step__text">
+                      See which trials are currently actively recruiting at our sites.
+                    </p>
+                  </div>
+                </li>
+                <li class="step">
+                  <span class="step__badge" aria-hidden="true">2</span>
+                  <div class="step__body">
+                    <h3 class="step__title">Pre-screen with AI</h3>
+                    <p class="step__text">
+                      Our online pre-screener gives you an immediate preliminary check. This saves you
+                      time and helps us connect you with the right people.
+                    </p>
+                  </div>
+                </li>
+                <li class="step">
+                  <span class="step__badge" aria-hidden="true">3</span>
+                  <div class="step__body">
+                    <h3 class="step__title">Talk with a patient navigator</h3>
+                    <p class="step__text">
+                      If you appear to be a potential match, you can then book a free, no-obligation
+                      phone call with a member of our patient navigator team. This call is your
+                      opportunity to ask questions and get more details about our trials, with
+                      absolutely no commitment to join. Support is available in your language, and
+                      interpreters can be provided if needed. Your information is kept private every
+                      step of the way.
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <section class="placeholder-section" data-scroll-section="faqs" id="faqs-physicians">
+          <h2 class="visually-hidden">FAQs</h2>
+          <p>FAQs — content placeholder</p>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
