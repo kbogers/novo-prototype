@@ -3,8 +3,17 @@
   "sidebarTitle": "Medical intake",
   "sidebarSubtitle": "Rare blood disease",
   "secureNote": "Information is captured and stored securely",
-  "completionTitle": "Thank you",
-  "completionBody": "Your responses have been saved for this session. A member of our team may follow up if you appear to match a study.",
+  "completion": {
+    "title": "Thank you",
+    "body": "Your responses have been saved for this session. Your patient navigator will reach out to you soon. You can also book a call using the button below.",
+    "returnLink": {
+      "label": "Book a call",
+      "href": "index.html"
+    },
+    "changeResponses": {
+      "label": "Change your responses"
+    }
+  },
   "steps": [
     {
       "id": "respondent-role",
@@ -27,8 +36,10 @@
       "whyAsk": "Age eligibility is set by each protocol and regulatory requirements.",
       "required": true,
       "showSkip": false,
-      "placeholder": "Enter your age",
-      "inputMode": "text"
+      "placeholder": "Age",
+      "inputMode": "numeric",
+      "maxLength": 3,
+      "inputWidth": "chunk"
     },
     {
       "id": "diagnosis",

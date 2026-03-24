@@ -20,6 +20,10 @@
     completePanel: document.getElementById('intake-complete'),
     completeTitle: document.getElementById('intake-complete-title'),
     completeBody: document.getElementById('intake-complete-body'),
+    completeLink: document.getElementById('intake-complete-link'),
+    completeChange: document.getElementById('intake-complete-change'),
+    completeChangeLabel: document.getElementById('intake-complete-change-label'),
+    completeFooter: document.getElementById('intake-complete-footer'),
   };
 
   let flow = null;
@@ -159,11 +163,13 @@
     if (step.type === 'text') {
       const input = document.createElement('input');
       input.className = 'intake-input';
+      if (step.inputWidth) input.classList.add(`intake-input--${step.inputWidth}`);
       input.id = 'intake-control';
       input.type = 'text';
       input.placeholder = step.placeholder || '';
       input.value = typeof val === 'string' ? val : '';
       if (step.inputMode) input.inputMode = step.inputMode;
+      if (typeof step.maxLength === 'number') input.maxLength = step.maxLength;
       if (step.pattern) input.pattern = step.pattern;
       input.addEventListener('input', () => {
         answers[step.id] = input.value;
@@ -313,13 +319,59 @@
     updateContinueEnabled();
   }
 
+  function completionContent() {
+    const c = flow && flow.completion ? flow.completion : {};
+    return {
+      title: c.title ?? flow?.completionTitle ?? 'Thank you',
+      body: c.body ?? flow?.completionBody ?? '',
+      returnLink: c.returnLink && typeof c.returnLink === 'object' ? c.returnLink : null,
+      changeResponses: c.changeResponses,
+    };
+  }
+
+  function applyCompletionContent() {
+    if (!flow) return;
+    const { title, body, returnLink, changeResponses } = completionContent();
+    el.completeTitle.textContent = title;
+    el.completeBody.textContent = body;
+    if (el.completeLink) {
+      el.completeLink.href = returnLink?.href || 'index.html';
+      el.completeLink.textContent = returnLink?.label || 'Book a call';
+    }
+    if (el.completeChange) {
+      const cr =
+        changeResponses && typeof changeResponses === 'object' ? changeResponses : {};
+      const showChange = changeResponses !== false;
+      el.completeChange.hidden = !showChange;
+      if (el.completeChangeLabel) {
+        el.completeChangeLabel.textContent = (cr.label || 'Change your responses').trim();
+      }
+      if (el.completeFooter) {
+        el.completeFooter.classList.toggle('intake-complete__footer--primary-only', !showChange);
+      }
+    }
+  }
+
+  function leaveCompletionAndEdit() {
+    if (!flow) return;
+    completed = false;
+    stepIndex = 0;
+    saveState();
+    el.completePanel.hidden = true;
+    el.activePanel.hidden = false;
+    renderStep();
+    requestAnimationFrame(() => {
+      const focusEl = document.getElementById('intake-control');
+      if (focusEl && typeof focusEl.focus === 'function') focusEl.focus();
+    });
+  }
+
   function showComplete() {
     completed = true;
     saveState();
     el.activePanel.hidden = true;
     el.completePanel.hidden = false;
-    el.completeTitle.textContent = flow.completionTitle || 'Thank you';
-    el.completeBody.textContent = flow.completionBody || '';
+    applyCompletionContent();
     if (flow && flow.steps && flow.steps.length > 0) {
       el.progressFill.style.width = '100%';
       el.progress.setAttribute('aria-valuenow', String(flow.steps.length));
@@ -394,6 +446,12 @@
         showComplete();
       }
     });
+
+    if (el.completeChange) {
+      el.completeChange.addEventListener('click', () => {
+        leaveCompletionAndEdit();
+      });
+    }
   }
 
   init();

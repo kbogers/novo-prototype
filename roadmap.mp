@@ -2,6 +2,7 @@
 
 ## Completed
 
+- **Age field width (Mar 2026):** The `age` text step uses optional JSON `inputWidth: "chunk"` plus `maxLength: 3` and `inputMode: "numeric"`. CSS class `.intake-input--chunk` caps width with `ch` + horizontal padding so the control matches ~3 digits instead of full-row `width: 100%`.
 - **Questionnaire opening steps (Mar 2026):** First step is patient vs caregiver (`respondent-role`); second is free-text age (`age`). Replaced the prior 18+ yes/no gate and the old diagnosis-as-second-step ordering.
 - **Questionnaire select (Mar 2026):** Step 3 (`diagnosis`) uses JSON `type: "select"` (native `<select>`) with a fixed list of rare blood diseases; `questionnaire.js` validates `select` like `radio`. Selects use `width: max-content` with `max-width: 100%`. The chevron is a custom SVG background (`appearance: none`) so spacing from the border is not controlled by the OS native arrow (which ignores padding).
 - **Contact step (Mar 2026):** After contact preference, `type: "contact"` renders name + email + phone on one screen; answers stored under `answers.contact` as `{ name, email, phone }`. `flowId` bumped to `eligibility-v2` so old session state clears.
@@ -20,6 +21,8 @@
 ## Decisions
 
 - **Questionnaire content:** Editable in `questionnaire.json` only (steps, copy, `showSkip`, field `type`). No separate CMS for the prototype.
+- **Closing screen (Mar 2026):** All completion copy lives under `completion`: `title`, `body`, and optional `returnLink` (`label`, `href`). Legacy top-level `completionTitle` / `completionBody` are still read by `questionnaire.js` if `completion` is absent.
+- **Edit from completion (Mar 2026):** Optional `completion.changeResponses` (`label`); set to `false` to hide. Uses the same footer pattern as question steps: `intake-footer__back` (with chevron) for edit, `returnLink` as `a.intake-footer__continue` (primary CTA, default “Book a call”). Footer class `intake-complete__footer--primary-only` when edit is hidden.
 - **Git / GitHub (Mar 2026):** Repository is scoped to this folder only (`git init` here), not the parent `Documents` tree. Remote: `https://github.com/kbogers/novo-prototype` (`main`). Added `.gitignore` for `.DS_Store`.
 - Nav links scroll within the **active** panel only (`data-scroll-section` + `data-scroll-target`). Patient panel ends after “How it works” (no trials/FAQs placeholders). Physician panel ends after “How it works” (FAQ placeholder removed Mar 2026).
 - **Features (“How it works”):** Header and steps list use `max-width: 800px`, `width: 100%`, and `margin: 0 auto` so they’re centered in `features__inner`; copy stays left-aligned (`text-align: left` on the header).
