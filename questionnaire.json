@@ -1,5 +1,5 @@
 {
-  "flowId": "eligibility-v5",
+  "flowId": "eligibility-v6",
   "sidebarTitle": "Medical intake",
   "sidebarSubtitle": "Rare blood disease",
   "secureNote": "Information is captured and stored securely",
@@ -66,6 +66,10 @@
       "title": "What is your age?",
       "subtitle": null,
       "whyAsk": "Age eligibility is set by each protocol and regulatory requirements.",
+      "caregiverCopy": {
+        "title": "What is the age of the patient?",
+        "placeholder": "Patient's age"
+      },
       "required": true,
       "showSkip": false,
       "placeholder": "Age",
@@ -79,6 +83,11 @@
       "title": "Which rare blood disease do you have?",
       "subtitle": "Please choose the option that best matches your diagnosis.",
       "whyAsk": "We match you to trials that enroll people with specific conditions.",
+      "caregiverCopy": {
+        "title": "Which rare blood disease does the patient have?",
+        "subtitle": "Please choose the option that best matches the patient's diagnosis.",
+        "whyAsk": "We match the patient to trials that enroll people with specific conditions."
+      },
       "required": true,
       "showSkip": true,
       "placeholder": "Select a condition",
@@ -109,6 +118,11 @@
       "title": "Which treatments have you received for your condition, and which are you currently receiving?",
       "subtitle": "Please include medications, therapies (including clinical trials) and procedures.",
       "whyAsk": "Inclusion criteria often depend on prior or current treatment.",
+      "caregiverCopy": {
+        "title": "Which treatments has the patient received for their condition, and which are they currently receiving?",
+        "subtitle": "Please include medications, therapies (including clinical trials) and procedures.",
+        "whyAsk": "Inclusion criteria often depend on the patient's prior or current treatment."
+      },
       "required": true,
       "showSkip": true,
       "placeholder": "",
@@ -119,6 +133,9 @@
       "type": "radio",
       "title": "How would you prefer to be contacted if you may be a match?",
       "subtitle": null,
+      "caregiverCopy": {
+        "title": "How would you prefer to be contacted if the patient may be a match?"
+      },
       "required": true,
       "showSkip": false,
       "options": [
@@ -133,6 +150,9 @@
       "title": "Your contact details",
       "subtitle": "We will only use this information to reach you about your inquiry.",
       "whyAsk": "Our team needs a way to follow up if you may match a study.",
+      "caregiverCopy": {
+        "whyAsk": "Our team needs a way to follow up with you if the patient may match a study."
+      },
       "required": true,
       "showSkip": false,
       "fields": [

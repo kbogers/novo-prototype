@@ -86,6 +86,29 @@
     }
   }
 
+  function respondentIsCaregiver() {
+    return answers['respondent-role'] === 'caregiver';
+  }
+
+  /** Merge optional step.caregiverCopy when the respondent is a caregiver (after step 1). */
+  function resolveStepCopy(step) {
+    const base = {
+      title: step.title || '',
+      subtitle: step.subtitle,
+      whyAsk: step.whyAsk,
+      placeholder: step.placeholder,
+    };
+    if (!respondentIsCaregiver()) return base;
+    const c = step.caregiverCopy;
+    if (!c || typeof c !== 'object') return base;
+    const out = { ...base };
+    if (c.title != null && String(c.title).length) out.title = c.title;
+    if ('subtitle' in c) out.subtitle = c.subtitle;
+    if ('whyAsk' in c) out.whyAsk = c.whyAsk;
+    if (c.placeholder != null) out.placeholder = c.placeholder;
+    return out;
+  }
+
   function optionLabel(step, value) {
     if (!value) return '';
     const opt = (step.options || []).find((o) => o.value === value);
@@ -158,15 +181,16 @@
       badge.className = 'intake-review-item__badge';
       badge.setAttribute('aria-hidden', 'true');
       badge.textContent = String(i + 1);
+      const copy = resolveStepCopy(step);
       const q = document.createElement('p');
       q.className = 'intake-review-item__question';
-      q.textContent = step.title || '';
+      q.textContent = copy.title || '';
       heading.appendChild(badge);
       heading.appendChild(q);
       const editBtn = document.createElement('button');
       editBtn.type = 'button';
       editBtn.className = 'intake-review-item__edit';
-      const editLabel = `Edit: ${(step.title || 'Question').replace(/"/g, '')}`;
+      const editLabel = `Edit: ${(copy.title || 'Question').replace(/"/g, '')}`;
       editBtn.setAttribute('aria-label', editLabel);
       const icon = document.createElement('span');
       icon.className = 'material-symbols-outlined';
@@ -256,7 +280,7 @@
     el.continueBtn.disabled = !validateStep(step);
   }
 
-  function mountInputs(step) {
+  function mountInputs(step, copy) {
     el.inputRoot.innerHTML = '';
     const val = answers[step.id];
 
@@ -312,7 +336,7 @@
       ta.className = 'intake-input intake-input--textarea';
       ta.id = 'intake-control';
       ta.rows = step.rows || 5;
-      ta.placeholder = step.placeholder || '';
+      ta.placeholder = (copy && copy.placeholder) || step.placeholder || '';
       ta.value = typeof val === 'string' ? val : '';
       ta.addEventListener('input', () => {
         answers[step.id] = ta.value;
@@ -328,7 +352,7 @@
       if (step.inputWidth) input.classList.add(`intake-input--${step.inputWidth}`);
       input.id = 'intake-control';
       input.type = 'text';
-      input.placeholder = step.placeholder || '';
+      input.placeholder = (copy && copy.placeholder) || step.placeholder || '';
       input.value = typeof val === 'string' ? val : '';
       if (step.inputMode) input.inputMode = step.inputMode;
       if (typeof step.maxLength === 'number') input.maxLength = step.maxLength;
@@ -349,7 +373,7 @@
       const select = document.createElement('select');
       select.className = 'intake-input intake-input--select';
       select.id = 'intake-control';
-      const placeholder = step.placeholder || 'Select…';
+      const placeholder = (copy && copy.placeholder) || step.placeholder || 'Select…';
       const opt0 = document.createElement('option');
       opt0.value = '';
       opt0.textContent = placeholder;
@@ -375,7 +399,7 @@
       fs.className = 'intake-fieldset';
       const leg = document.createElement('legend');
       leg.className = 'visually-hidden';
-      leg.textContent = step.title;
+      leg.textContent = (copy && copy.title) || step.title;
       fs.appendChild(leg);
       const list = document.createElement('div');
       list.className = 'intake-options';
@@ -408,7 +432,7 @@
       fs.className = 'intake-fieldset';
       const leg = document.createElement('legend');
       leg.className = 'visually-hidden';
-      leg.textContent = step.title;
+      leg.textContent = (copy && copy.title) || step.title;
       fs.appendChild(leg);
       const list = document.createElement('div');
       list.className = 'intake-options';
@@ -456,19 +480,20 @@
     el.stepLabel.hidden = false;
 
     el.stepLabel.textContent = `Question ${stepIndex + 1} of ${steps.length}`;
-    el.title.textContent = step.title;
+    const copy = resolveStepCopy(step);
+    el.title.textContent = copy.title;
 
-    if (step.subtitle) {
-      el.subtitle.textContent = step.subtitle;
+    if (copy.subtitle) {
+      el.subtitle.textContent = copy.subtitle;
       el.subtitle.hidden = false;
     } else {
       el.subtitle.textContent = '';
       el.subtitle.hidden = true;
     }
 
-    if (step.whyAsk) {
+    if (copy.whyAsk) {
       el.why.hidden = false;
-      el.whyText.textContent = step.whyAsk;
+      el.whyText.textContent = copy.whyAsk;
       el.why.open = false;
     } else {
       el.why.hidden = true;
@@ -483,7 +508,7 @@
     el.progress.setAttribute('aria-valuemax', String(steps.length));
     el.progress.setAttribute('aria-label', `Question ${stepIndex + 1} of ${steps.length}`);
 
-    mountInputs(step);
+    mountInputs(step, copy);
     updateContinueEnabled();
   }
 
