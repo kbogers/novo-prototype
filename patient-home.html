@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home — myTomorrows</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="portal-page">
+    <a href="#portal-main" class="skip-link">Skip to content</a>
+
+    <header class="portal-nav">
+      <div class="portal-nav__inner">
+        <a href="patient-home.html" class="portal-nav__logo" aria-label="myTomorrows home">
+          <img src="assets/logo-mytomorrows.svg" alt="" width="161" height="20" />
+        </a>
+        <nav class="portal-nav__links" aria-label="Primary">
+          <a href="patient-home.html" class="portal-nav__item portal-nav__item--active" aria-current="page"
+            >Home</a
+          >
+          <a href="#" class="portal-nav__item">Medical profile</a>
+          <a href="#" class="portal-nav__item">Documents</a>
+        </nav>
+        <div class="portal-nav__user">
+          <span class="portal-nav__avatar" aria-hidden="true">
+            <span class="material-symbols-outlined">person_add</span>
+          </span>
+          <span class="portal-nav__user-name" id="portal-user-name">Peter Patient</span>
+          <span class="material-symbols-outlined portal-nav__chev" aria-hidden="true">keyboard_arrow_down</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="portal-hero">
+      <img
+        class="portal-hero__decoration"
+        src="assets/portal-hero-decoration.svg"
+        alt=""
+        width="1090"
+        height="650"
+      />
+      <div class="portal-hero__copy">
+        <h1 class="portal-headline-3 portal-hero__title">
+          Welcome, <span id="portal-welcome-name">Peter</span>!
+        </h1>
+        <div class="portal-body-1 portal-hero__intro">
+          <p>
+            Use your home page to see what happens next on your journey to explore clinical trial or expanded
+            access options.
+          </p>
+          <p>
+            Help us collect your medical information and create a personalized trial search overview for you.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <main id="portal-main" class="portal-main">
+      <div class="portal-main__row">
+        <section class="portal-next-card" aria-labelledby="portal-next-heading">
+          <div class="portal-next-card__left">
+            <h2 class="portal-subtitle-1" id="portal-next-heading">Your next steps on clinical trial journey</h2>
+            <ol class="portal-step-list">
+              <li class="portal-step-item portal-step-item--current">
+                <span class="portal-step-badge portal-step-badge--current" aria-hidden="true">1</span>
+                <span class="portal-step-label portal-step-label--current">Share your medical information</span>
+              </li>
+              <li class="portal-step-item">
+                <span class="portal-step-badge" aria-hidden="true">2</span>
+                <span class="portal-step-label">Wait while we review your details</span>
+              </li>
+              <li class="portal-step-item">
+                <span class="portal-step-badge" aria-hidden="true">3</span>
+                <span class="portal-step-label">Review your trial search overview</span>
+              </li>
+              <li class="portal-step-item">
+                <span class="portal-step-badge" aria-hidden="true">4</span>
+                <span class="portal-step-label">Discuss your options</span>
+              </li>
+            </ol>
+          </div>
+          <div class="portal-next-card__divider" aria-hidden="true"></div>
+          <div class="portal-next-card__right">
+            <span class="material-symbols-outlined portal-quiz-icon" aria-hidden="true">quiz</span>
+            <h3 class="portal-subtitle-2">Answer medical questionnaire</h3>
+            <p class="portal-body-1 portal-next-card__desc">
+              Please complete the questionnaire to the best of your ability. After submitting it, our patient
+              navigation team will review your medical information and prepare your trial search overview.
+            </p>
+            <a href="questionnaire.html" class="portal-btn-primary">Complete questionnaire</a>
+          </div>
+        </section>
+
+        <aside class="portal-video-card" aria-labelledby="portal-video-heading">
+          <h3 class="portal-subtitle-1" id="portal-video-heading">How we can support you</h3>
+          <p class="portal-body-2 portal-video-card__intro">
+            Watch a short video explaining how clinical trials work and how we can support you throughout the
+            process.
+          </p>
+          <div class="portal-video-frame">
+            <img
+              class="portal-video-frame__thumb"
+              src="assets/portal-video-thumb.png"
+              alt=""
+              width="284"
+              height="177"
+            />
+            <button type="button" class="portal-video-frame__play" aria-label="Play video">
+              <img src="assets/portal-play-circle.svg" alt="" width="40" height="40" />
+            </button>
+          </div>
+        </aside>
+      </div>
+
+      <section class="portal-quick" aria-labelledby="portal-quick-heading">
+        <h2 class="portal-headline-5" id="portal-quick-heading">Quick links</h2>
+        <div class="portal-quick__grid">
+          <a href="#" class="portal-quick-card">
+            <span class="portal-quick-card__icon portal-quick-card__icon--contact" aria-hidden="true">
+              <span class="material-symbols-outlined">support_agent</span>
+            </span>
+            <span class="portal-quick-card__body">
+              <span class="portal-subtitle-1 portal-quick-card__title">Contact your patient navigator</span>
+              <span class="portal-body-2 portal-quick-card__text"
+                >We will reach out with next steps, but you can still book a call if needed.</span
+              >
+            </span>
+          </a>
+          <a href="https://www.mytomorrows.com/" class="portal-quick-card" target="_blank" rel="noopener noreferrer">
+            <span class="portal-quick-card__icon portal-quick-card__icon--faq" aria-hidden="true">
+              <span class="material-symbols-outlined">help</span>
+            </span>
+            <span class="portal-quick-card__body">
+              <span class="portal-subtitle-1 portal-quick-card__title">Frequently asked questions</span>
+              <span class="portal-body-2 portal-quick-card__text"
+                >Here you can find commonly asked questions about myTomorrows and how we can help you.</span
+              >
+            </span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="portal-footer">
+      <p class="portal-caption portal-footer__legal">
+        <span>©2023 myTomorrows –</span>
+        <a href="#">Terms of Service</a>
+        <span> - </span>
+        <a href="#">Privacy policy - Cookie policy</a>
+      </p>
+    </footer>
+
+    <script>
+      (function () {
+        const p = new URLSearchParams(location.search);
+        const first = p.get("first");
+        const name = p.get("name");
+        const welcomeEl = document.getElementById("portal-welcome-name");
+        const userEl = document.getElementById("portal-user-name");
+        if (first && welcomeEl) welcomeEl.textContent = first;
+        if (name && userEl) userEl.textContent = name;
+        else if (first && userEl && !name) userEl.textContent = first + " Patient";
+      })();
+    </script>
+  </body>
+</html>

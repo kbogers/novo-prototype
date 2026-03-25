@@ -41,7 +41,7 @@
         </aside>
 
         <div class="intake-stack">
-          <section class="intake-card" aria-labelledby="intake-step-label">
+          <section class="intake-card" id="intake-card" aria-labelledby="intake-step-label">
             <div class="intake-card__progress" role="progressbar" aria-valuemin="1" aria-valuemax="1" aria-valuenow="1" aria-label="Question progress" id="intake-progress">
               <div class="intake-card__progress-fill" id="intake-progress-fill"></div>
             </div>
@@ -79,20 +79,133 @@
               </footer>
             </div>
 
-            <div class="intake-card__body intake-complete" id="intake-complete" hidden>
-              <h1 class="intake-card__title" id="intake-complete-title"></h1>
-              <p class="intake-card__subtitle intake-complete__body" id="intake-complete-body"></p>
-              <footer class="intake-card__footer intake-complete__footer" id="intake-complete-footer">
-                <button type="button" class="intake-footer__back" id="intake-complete-change">
+            <div class="intake-card__body intake-review" id="intake-review" hidden>
+              <div class="intake-review__intro">
+                <p class="intake-review__eyebrow" id="intake-review-eyebrow">Summary</p>
+                <h1 class="intake-review__title" id="intake-review-title">
+                  Review and confirm your answers
+                </h1>
+              </div>
+              <ul class="intake-review__list" id="intake-review-list" role="list"></ul>
+              <footer class="intake-card__footer intake-review__footer">
+                <button type="button" class="intake-footer__back" id="intake-review-back">
                   <span class="material-symbols-outlined" aria-hidden="true">keyboard_arrow_left</span>
-                  <span id="intake-complete-change-label">Change your responses</span>
+                  Back
                 </button>
-                <div class="intake-footer__right">
-                  <a href="index.html" class="intake-footer__continue" id="intake-complete-link">Book a call</a>
-                </div>
+                <button type="button" class="intake-footer__continue" id="intake-review-submit">
+                  Submit questionnaire
+                </button>
               </footer>
             </div>
           </section>
+
+          <div class="intake-complete-screen" id="intake-complete" hidden>
+            <div class="intake-done-card">
+              <div class="intake-done-hero">
+                <div class="intake-done-icon" aria-hidden="true">
+                  <span class="material-symbols-outlined intake-done-icon__glyph">check</span>
+                </div>
+                <h1 class="intake-done-headline" id="intake-complete-headline">Thank you!</h1>
+                <p class="intake-done-lead" id="intake-complete-lead">
+                  We received your medical information
+                </p>
+              </div>
+              <div class="intake-done-next">
+                <h2 class="intake-done-next__title" id="intake-complete-next-heading">Next steps:</h2>
+                <ol class="intake-done-steps">
+                  <li class="intake-done-step">
+                    <span class="intake-done-step__num" aria-hidden="true">1</span>
+                    <div class="intake-done-step__body">
+                      <p class="intake-done-step__heading" id="intake-complete-step1-title">
+                        Create your myTomorrows account
+                      </p>
+                      <p class="intake-done-step__text" id="intake-complete-step1-desc">
+                        Create your account to check your status, stay on top of your next steps, view and
+                        edit your medical information.
+                      </p>
+                      <a
+                        class="intake-done-cta"
+                        id="intake-complete-create-account"
+                        href="patient-home.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Create account</a
+                      >
+                    </div>
+                  </li>
+                  <li class="intake-done-step">
+                    <span class="intake-done-step__num" aria-hidden="true">2</span>
+                    <div class="intake-done-step__body">
+                      <p class="intake-done-step__heading" id="intake-complete-step2-title">
+                        Receive overview of clinical trial options
+                      </p>
+                      <p class="intake-done-step__text" id="intake-complete-step2-p1">
+                        We will review your medical information and look for clinical trial options that match
+                        your medical situation. Within one week, we will let you know when your trial search
+                        overview is ready for download in your account.
+                      </p>
+                      <p class="intake-done-step__text" id="intake-complete-step2-p2">
+                        If we need more information before creating your overview, we will contact you by email
+                        within one week.
+                      </p>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="intake-done-card intake-done-card--help">
+              <div class="intake-done-help-header">
+                <h2 class="intake-done-help__title" id="intake-complete-help-title">Need help?</h2>
+                <p class="intake-done-help__intro" id="intake-complete-help-intro">
+                  Find answers in our FAQs or reach out to us directly.
+                </p>
+              </div>
+              <div class="intake-done-help-cards">
+                <div class="intake-done-help-row">
+                  <div class="intake-done-help-copy">
+                    <p class="intake-done-help-row__title" id="intake-complete-faq-title">FAQs</p>
+                    <p class="intake-done-help-row__text" id="intake-complete-faq-desc">
+                      We’ve combined some of our most asked questions to help you.
+                    </p>
+                    <a
+                      class="intake-done-link"
+                      id="intake-complete-faq-link"
+                      href="https://www.mytomorrows.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ><span id="intake-complete-faq-link-label">Read FAQs</span
+                      ><span class="material-symbols-outlined intake-done-link__icon" aria-hidden="true"
+                        >open_in_new</span
+                      ></a
+                    >
+                  </div>
+                  <span class="material-symbols-outlined intake-done-help-icon" aria-hidden="true">help</span>
+                </div>
+                <div class="intake-done-help-row">
+                  <div class="intake-done-help-copy">
+                    <p class="intake-done-help-row__title" id="intake-complete-contact-title">Contact us</p>
+                    <p class="intake-done-help-row__text" id="intake-complete-contact-intro">
+                      If you have any questions or need more information, send an email to:
+                    </p>
+                    <a
+                      class="intake-done-link"
+                      id="intake-complete-contact-email"
+                      href="mailto:patientnavigation@mytomorrows.com"
+                      >patientnavigation@mytomorrows.com</a
+                    >
+                  </div>
+                  <span class="material-symbols-outlined intake-done-help-icon" aria-hidden="true">mail</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="intake-done-change-wrap">
+              <button type="button" class="intake-done-change" id="intake-complete-change">
+                <span id="intake-complete-change-label">Change your responses</span>
+              </button>
+            </p>
+          </div>
 
           <div class="intake-secure">
             <span class="material-symbols-outlined intake-secure__icon" aria-hidden="true">lock</span>

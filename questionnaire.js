@@ -18,18 +18,40 @@
     progressFill: document.getElementById('intake-progress-fill'),
     activePanel: document.getElementById('intake-active-panel'),
     completePanel: document.getElementById('intake-complete'),
-    completeTitle: document.getElementById('intake-complete-title'),
-    completeBody: document.getElementById('intake-complete-body'),
-    completeLink: document.getElementById('intake-complete-link'),
+    completeHeadline: document.getElementById('intake-complete-headline'),
+    completeLead: document.getElementById('intake-complete-lead'),
+    completeNextHeading: document.getElementById('intake-complete-next-heading'),
+    completeStep1Title: document.getElementById('intake-complete-step1-title'),
+    completeStep1Desc: document.getElementById('intake-complete-step1-desc'),
+    completeCreateAccount: document.getElementById('intake-complete-create-account'),
+    completeStep2Title: document.getElementById('intake-complete-step2-title'),
+    completeStep2P1: document.getElementById('intake-complete-step2-p1'),
+    completeStep2P2: document.getElementById('intake-complete-step2-p2'),
+    completeHelpTitle: document.getElementById('intake-complete-help-title'),
+    completeHelpIntro: document.getElementById('intake-complete-help-intro'),
+    completeFaqTitle: document.getElementById('intake-complete-faq-title'),
+    completeFaqDesc: document.getElementById('intake-complete-faq-desc'),
+    completeFaqLink: document.getElementById('intake-complete-faq-link'),
+    completeFaqLinkLabel: document.getElementById('intake-complete-faq-link-label'),
+    completeContactTitle: document.getElementById('intake-complete-contact-title'),
+    completeContactIntro: document.getElementById('intake-complete-contact-intro'),
+    completeContactEmail: document.getElementById('intake-complete-contact-email'),
     completeChange: document.getElementById('intake-complete-change'),
     completeChangeLabel: document.getElementById('intake-complete-change-label'),
-    completeFooter: document.getElementById('intake-complete-footer'),
+    intakeCard: document.getElementById('intake-card'),
+    reviewPanel: document.getElementById('intake-review'),
+    reviewList: document.getElementById('intake-review-list'),
+    reviewEyebrow: document.getElementById('intake-review-eyebrow'),
+    reviewTitle: document.getElementById('intake-review-title'),
+    reviewBack: document.getElementById('intake-review-back'),
+    reviewSubmit: document.getElementById('intake-review-submit'),
   };
 
   let flow = null;
   let stepIndex = 0;
   let answers = {};
   let completed = false;
+  let reviewing = false;
 
   function saveState() {
     if (!flow) return;
@@ -41,6 +63,7 @@
           stepIndex,
           answers,
           completed,
+          reviewing,
         })
       );
     } catch (_) {
@@ -57,9 +80,148 @@
       answers = s.answers && typeof s.answers === 'object' ? { ...s.answers } : {};
       if (typeof s.stepIndex === 'number' && s.stepIndex >= 0) stepIndex = s.stepIndex;
       if (s.completed === true) completed = true;
+      if (s.reviewing === true) reviewing = true;
     } catch (_) {
       answers = {};
     }
+  }
+
+  function optionLabel(step, value) {
+    if (!value) return '';
+    const opt = (step.options || []).find((o) => o.value === value);
+    return opt ? opt.label : value;
+  }
+
+  function formatAnswerForReview(step, answer) {
+    switch (step.type) {
+      case 'radio':
+      case 'select': {
+        const t = optionLabel(step, answer);
+        return t || '—';
+      }
+      case 'text':
+      case 'textarea': {
+        if (typeof answer !== 'string' || !answer.trim()) return '—';
+        return answer.trim();
+      }
+      case 'checkbox': {
+        if (!Array.isArray(answer) || answer.length === 0) return '—';
+        return answer
+          .map((v) => optionLabel(step, v) || v)
+          .filter(Boolean)
+          .join(', ');
+      }
+      case 'contact': {
+        const o = answer && typeof answer === 'object' && !Array.isArray(answer) ? answer : {};
+        const lines = [];
+        (step.fields || []).forEach((f) => {
+          const v = typeof o[f.id] === 'string' ? o[f.id].trim() : '';
+          if (v) lines.push(`${f.label}: ${v}`);
+        });
+        return lines.length ? lines.join('\n') : '—';
+      }
+      default:
+        return answer != null && String(answer).trim() ? String(answer).trim() : '—';
+    }
+  }
+
+  function reviewCopy() {
+    const r = flow && flow.review && typeof flow.review === 'object' ? flow.review : {};
+    return {
+      eyebrow: (r.eyebrow || 'Summary').trim(),
+      title: (r.title || 'Review and confirm your answers').trim(),
+      submitLabel: (r.submitLabel || 'Submit questionnaire').trim(),
+    };
+  }
+
+  function applyReviewCopy() {
+    if (!flow) return;
+    const { eyebrow, title, submitLabel } = reviewCopy();
+    if (el.reviewEyebrow) el.reviewEyebrow.textContent = eyebrow;
+    if (el.reviewTitle) el.reviewTitle.textContent = title;
+    if (el.reviewSubmit) el.reviewSubmit.textContent = submitLabel;
+  }
+
+  function renderReviewList() {
+    if (!flow || !el.reviewList) return;
+    const steps = flow.steps || [];
+    el.reviewList.innerHTML = '';
+    steps.forEach((step, i) => {
+      const li = document.createElement('li');
+      li.className = 'intake-review-item';
+      const answerText = formatAnswerForReview(step, answers[step.id]);
+      const row = document.createElement('div');
+      row.className = 'intake-review-item__row';
+      const heading = document.createElement('div');
+      heading.className = 'intake-review-item__heading';
+      const badge = document.createElement('span');
+      badge.className = 'intake-review-item__badge';
+      badge.setAttribute('aria-hidden', 'true');
+      badge.textContent = String(i + 1);
+      const q = document.createElement('p');
+      q.className = 'intake-review-item__question';
+      q.textContent = step.title || '';
+      heading.appendChild(badge);
+      heading.appendChild(q);
+      const editBtn = document.createElement('button');
+      editBtn.type = 'button';
+      editBtn.className = 'intake-review-item__edit';
+      const editLabel = `Edit: ${(step.title || 'Question').replace(/"/g, '')}`;
+      editBtn.setAttribute('aria-label', editLabel);
+      const icon = document.createElement('span');
+      icon.className = 'material-symbols-outlined';
+      icon.setAttribute('aria-hidden', 'true');
+      icon.textContent = 'edit';
+      editBtn.appendChild(icon);
+      editBtn.addEventListener('click', () => {
+        if (!flow) return;
+        reviewing = false;
+        stepIndex = i;
+        saveState();
+        el.reviewPanel.hidden = true;
+        el.activePanel.hidden = false;
+        if (el.intakeCard) {
+          el.intakeCard.hidden = false;
+          el.intakeCard.classList.remove('intake-card--review');
+        }
+        el.stepLabel.hidden = false;
+        renderStep();
+        requestAnimationFrame(() => {
+          const focusEl = document.getElementById('intake-control');
+          if (focusEl && typeof focusEl.focus === 'function') focusEl.focus();
+        });
+      });
+      row.appendChild(heading);
+      row.appendChild(editBtn);
+      const answer = document.createElement('div');
+      answer.className = 'intake-review-item__answer';
+      answer.textContent = answerText;
+      li.appendChild(row);
+      li.appendChild(answer);
+      el.reviewList.appendChild(li);
+    });
+  }
+
+  function showReview() {
+    if (!flow) return;
+    reviewing = true;
+    saveState();
+    el.activePanel.hidden = true;
+    el.completePanel.hidden = true;
+    if (el.reviewPanel) el.reviewPanel.hidden = false;
+    if (el.intakeCard) {
+      el.intakeCard.hidden = false;
+      el.intakeCard.classList.add('intake-card--review');
+    }
+    el.stepLabel.hidden = true;
+    if (flow.steps && flow.steps.length > 0) {
+      el.progressFill.style.width = '100%';
+      el.progress.setAttribute('aria-valuenow', String(flow.steps.length));
+      el.progress.setAttribute('aria-valuemax', String(flow.steps.length));
+      el.progress.setAttribute('aria-label', 'Review your answers before submitting');
+    }
+    applyReviewCopy();
+    renderReviewList();
   }
 
   function validateStep(step) {
@@ -286,6 +448,12 @@
 
     el.activePanel.hidden = false;
     el.completePanel.hidden = true;
+    if (el.reviewPanel) el.reviewPanel.hidden = true;
+    if (el.intakeCard) {
+      el.intakeCard.hidden = false;
+      el.intakeCard.classList.remove('intake-card--review');
+    }
+    el.stepLabel.hidden = false;
 
     el.stepLabel.textContent = `Question ${stepIndex + 1} of ${steps.length}`;
     el.title.textContent = step.title;
@@ -321,33 +489,125 @@
 
   function completionContent() {
     const c = flow && flow.completion ? flow.completion : {};
+    const step1In = c.step1 && typeof c.step1 === 'object' ? c.step1 : {};
+    const step2In = c.step2 && typeof c.step2 === 'object' ? c.step2 : {};
+    const helpIn = c.help && typeof c.help === 'object' ? c.help : {};
+    const faqIn = helpIn.faqCard && typeof helpIn.faqCard === 'object' ? helpIn.faqCard : {};
+    const contactIn = helpIn.contactCard && typeof helpIn.contactCard === 'object' ? helpIn.contactCard : {};
+    const ctaIn = step1In.cta && typeof step1In.cta === 'object' ? step1In.cta : {};
+
+    const defaultP2 =
+      'If we need more information before creating your overview, we will contact you by email within one week.';
+    const defaultP1 =
+      'We will review your medical information and look for clinical trial options that match your medical situation. Within one week, we will let you know when your trial search overview is ready for download in your account.';
+
+    const paragraphs =
+      Array.isArray(step2In.paragraphs) && step2In.paragraphs.length > 0
+        ? step2In.paragraphs
+        : [defaultP1, defaultP2];
+
     return {
-      title: c.title ?? flow?.completionTitle ?? 'Thank you',
-      body: c.body ?? flow?.completionBody ?? '',
-      returnLink: c.returnLink && typeof c.returnLink === 'object' ? c.returnLink : null,
+      headline: c.headline ?? c.title ?? 'Thank you!',
+      lead: c.lead ?? 'We received your medical information',
+      nextStepsHeading: c.nextStepsHeading ?? 'Next steps:',
+      step1: {
+        title: step1In.title ?? 'Create your myTomorrows account',
+        description:
+          step1In.description ??
+          'Create your account to check your status, stay on top of your next steps, view and edit your medical information.',
+        cta: {
+          label: ctaIn.label ?? 'Create account',
+          href: ctaIn.href ?? 'patient-home.html',
+        },
+      },
+      step2: {
+        title: step2In.title ?? 'Receive overview of clinical trial options',
+        paragraphs,
+      },
+      help: {
+        title: helpIn.title ?? 'Need help?',
+        intro:
+          helpIn.intro ?? 'Find answers in our FAQs or reach out to us directly.',
+        faqCard: {
+          title: faqIn.title ?? 'FAQs',
+          description:
+            faqIn.description ??
+            "We've combined some of our most asked questions to help you.",
+          linkLabel: faqIn.linkLabel ?? 'Read FAQs',
+          href: faqIn.href ?? 'https://www.mytomorrows.com/',
+        },
+        contactCard: {
+          title: contactIn.title ?? 'Contact us',
+          intro:
+            contactIn.intro ??
+            'If you have any questions or need more information, send an email to:',
+          email: contactIn.email ?? 'patientnavigation@mytomorrows.com',
+        },
+      },
       changeResponses: c.changeResponses,
     };
   }
 
+  function createAccountHref(baseHref) {
+    try {
+      const u = new URL(baseHref, window.location.href);
+      const contact = answers.contact;
+      if (contact && typeof contact === 'object' && typeof contact.name === 'string') {
+        const raw = contact.name.trim();
+        if (raw) {
+          const first = raw.split(/\s+/)[0];
+          u.searchParams.set('first', first);
+          u.searchParams.set('name', raw);
+        }
+      }
+      return u.pathname + u.search + u.hash;
+    } catch (_) {
+      return baseHref;
+    }
+  }
+
   function applyCompletionContent() {
     if (!flow) return;
-    const { title, body, returnLink, changeResponses } = completionContent();
-    el.completeTitle.textContent = title;
-    el.completeBody.textContent = body;
-    if (el.completeLink) {
-      el.completeLink.href = returnLink?.href || 'index.html';
-      el.completeLink.textContent = returnLink?.label || 'Book a call';
+    const x = completionContent();
+    if (el.completeHeadline) el.completeHeadline.textContent = x.headline;
+    if (el.completeLead) el.completeLead.textContent = x.lead;
+    if (el.completeNextHeading) el.completeNextHeading.textContent = x.nextStepsHeading;
+    if (el.completeStep1Title) el.completeStep1Title.textContent = x.step1.title;
+    if (el.completeStep1Desc) el.completeStep1Desc.textContent = x.step1.description;
+    if (el.completeCreateAccount) {
+      el.completeCreateAccount.href = createAccountHref(x.step1.cta.href);
+      el.completeCreateAccount.textContent = x.step1.cta.label;
+    }
+    if (el.completeStep2Title) el.completeStep2Title.textContent = x.step2.title;
+    if (el.completeStep2P1) {
+      el.completeStep2P1.textContent = x.step2.paragraphs[0] || '';
+      el.completeStep2P1.hidden = !x.step2.paragraphs[0];
+    }
+    if (el.completeStep2P2) {
+      const p2 = x.step2.paragraphs[1];
+      el.completeStep2P2.textContent = p2 || '';
+      el.completeStep2P2.hidden = !p2;
+    }
+    if (el.completeHelpTitle) el.completeHelpTitle.textContent = x.help.title;
+    if (el.completeHelpIntro) el.completeHelpIntro.textContent = x.help.intro;
+    if (el.completeFaqTitle) el.completeFaqTitle.textContent = x.help.faqCard.title;
+    if (el.completeFaqDesc) el.completeFaqDesc.textContent = x.help.faqCard.description;
+    if (el.completeFaqLink) el.completeFaqLink.href = x.help.faqCard.href;
+    if (el.completeFaqLinkLabel) el.completeFaqLinkLabel.textContent = x.help.faqCard.linkLabel;
+    if (el.completeContactTitle) el.completeContactTitle.textContent = x.help.contactCard.title;
+    if (el.completeContactIntro) el.completeContactIntro.textContent = x.help.contactCard.intro;
+    const email = x.help.contactCard.email;
+    if (el.completeContactEmail) {
+      el.completeContactEmail.textContent = email;
+      el.completeContactEmail.href = `mailto:${email}`;
     }
     if (el.completeChange) {
       const cr =
-        changeResponses && typeof changeResponses === 'object' ? changeResponses : {};
-      const showChange = changeResponses !== false;
+        x.changeResponses && typeof x.changeResponses === 'object' ? x.changeResponses : {};
+      const showChange = x.changeResponses !== false;
       el.completeChange.hidden = !showChange;
       if (el.completeChangeLabel) {
         el.completeChangeLabel.textContent = (cr.label || 'Change your responses').trim();
-      }
-      if (el.completeFooter) {
-        el.completeFooter.classList.toggle('intake-complete__footer--primary-only', !showChange);
       }
     }
   }
@@ -355,10 +615,14 @@
   function leaveCompletionAndEdit() {
     if (!flow) return;
     completed = false;
+    reviewing = false;
     stepIndex = 0;
     saveState();
     el.completePanel.hidden = true;
+    if (el.intakeCard) el.intakeCard.hidden = false;
     el.activePanel.hidden = false;
+    if (el.reviewPanel) el.reviewPanel.hidden = true;
+    if (el.intakeCard) el.intakeCard.classList.remove('intake-card--review');
     renderStep();
     requestAnimationFrame(() => {
       const focusEl = document.getElementById('intake-control');
@@ -368,15 +632,16 @@
 
   function showComplete() {
     completed = true;
+    reviewing = false;
     saveState();
     el.activePanel.hidden = true;
     el.completePanel.hidden = false;
-    applyCompletionContent();
-    if (flow && flow.steps && flow.steps.length > 0) {
-      el.progressFill.style.width = '100%';
-      el.progress.setAttribute('aria-valuenow', String(flow.steps.length));
-      el.progress.setAttribute('aria-valuemax', String(flow.steps.length));
+    if (el.reviewPanel) el.reviewPanel.hidden = true;
+    if (el.intakeCard) {
+      el.intakeCard.hidden = true;
+      el.intakeCard.classList.remove('intake-card--review');
     }
+    applyCompletionContent();
   }
 
   function bindFlow(data) {
@@ -393,6 +658,16 @@
     }
 
     if (stepIndex < 0 || stepIndex >= flow.steps.length) stepIndex = 0;
+
+    if (reviewing) {
+      if (stepIndex !== flow.steps.length - 1) {
+        reviewing = false;
+        saveState();
+      } else {
+        showReview();
+        return;
+      }
+    }
 
     renderStep();
   }
@@ -430,7 +705,7 @@
         saveState();
         renderStep();
       } else {
-        showComplete();
+        showReview();
       }
     });
 
@@ -443,9 +718,26 @@
         saveState();
         renderStep();
       } else {
-        showComplete();
+        showReview();
       }
     });
+
+    if (el.reviewBack) {
+      el.reviewBack.addEventListener('click', () => {
+        if (!flow || completed || !reviewing) return;
+        reviewing = false;
+        stepIndex = Math.max(0, flow.steps.length - 1);
+        saveState();
+        renderStep();
+      });
+    }
+
+    if (el.reviewSubmit) {
+      el.reviewSubmit.addEventListener('click', () => {
+        if (!flow || completed || !reviewing) return;
+        showComplete();
+      });
+    }
 
     if (el.completeChange) {
       el.completeChange.addEventListener('click', () => {

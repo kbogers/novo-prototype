@@ -1,14 +1,46 @@
 {
-  "flowId": "eligibility-v2",
+  "flowId": "eligibility-v5",
   "sidebarTitle": "Medical intake",
   "sidebarSubtitle": "Rare blood disease",
   "secureNote": "Information is captured and stored securely",
+  "review": {
+    "eyebrow": "Summary",
+    "title": "Review and confirm your answers",
+    "submitLabel": "Submit questionnaire"
+  },
   "completion": {
-    "title": "Thank you",
-    "body": "Your responses have been saved for this session. Your patient navigator will reach out to you soon. You can also book a call using the button below.",
-    "returnLink": {
-      "label": "Book a call",
-      "href": "index.html"
+    "headline": "Thank you!",
+    "lead": "We received your medical information",
+    "nextStepsHeading": "Next steps:",
+    "step1": {
+      "title": "Create your myTomorrows account",
+      "description": "Create your account to check your status, stay on top of your next steps, view and edit your medical information.",
+      "cta": {
+        "label": "Create account",
+        "href": "patient-home.html"
+      }
+    },
+    "step2": {
+      "title": "Receive overview of clinical trial options",
+      "paragraphs": [
+        "We will review your medical information and look for clinical trial options that match your medical situation. Within one week, we will let you know when your trial search overview is ready for download in your account.",
+        "If we need more information before creating your overview, we will contact you by email within one week."
+      ]
+    },
+    "help": {
+      "title": "Need help?",
+      "intro": "Find answers in our FAQs or reach out to us directly.",
+      "faqCard": {
+        "title": "FAQs",
+        "description": "We've combined some of our most asked questions to help you.",
+        "linkLabel": "Read FAQs",
+        "href": "https://www.mytomorrows.com/"
+      },
+      "contactCard": {
+        "title": "Contact us",
+        "intro": "If you have any questions or need more information, send an email to:",
+        "email": "patientnavigation@mytomorrows.com"
+      }
     },
     "changeResponses": {
       "label": "Change your responses"
