@@ -44,23 +44,25 @@
     <div class="portal-hero">
       <img
         class="portal-hero__decoration"
-        src="assets/portal-hero-decoration.svg"
+        src="assets/Decoration_Hero.png"
         alt=""
-        width="1090"
-        height="650"
+        width="1968"
+        height="1052"
       />
-      <div class="portal-hero__copy">
-        <h1 class="portal-headline-3 portal-hero__title">
-          Welcome, <span id="portal-welcome-name">Peter</span>!
-        </h1>
-        <div class="portal-body-1 portal-hero__intro">
-          <p>
-            Use your home page to see what happens next on your journey to explore clinical trial or expanded
-            access options.
-          </p>
-          <p>
-            Help us collect your medical information and create a personalized trial search overview for you.
-          </p>
+      <div class="portal-hero__inner">
+        <div class="portal-hero__copy">
+          <h1 class="portal-headline-3 portal-hero__title">
+            Welcome, <span id="portal-welcome-name">Peter</span>!
+          </h1>
+          <div class="portal-body-1 portal-hero__intro">
+            <p>
+              Use your home page to see what happens next on your journey to explore clinical trial or expanded
+              access options.
+            </p>
+            <p>
+              Help us collect your medical information and create a personalized trial search overview for you.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -71,13 +73,18 @@
           <div class="portal-next-card__left">
             <h2 class="portal-subtitle-1" id="portal-next-heading">Your next steps on clinical trial journey</h2>
             <ol class="portal-step-list">
-              <li class="portal-step-item portal-step-item--current">
-                <span class="portal-step-badge portal-step-badge--current" aria-hidden="true">1</span>
-                <span class="portal-step-label portal-step-label--current">Share your medical information</span>
+              <li
+                class="portal-step-item portal-step-item--completed"
+                aria-label="Step 1 completed: Share your medical information"
+              >
+                <span class="portal-step-badge portal-step-badge--completed" aria-hidden="true">
+                  <span class="material-symbols-outlined">check</span>
+                </span>
+                <span class="portal-step-label portal-step-label--completed">Share your medical information</span>
               </li>
-              <li class="portal-step-item">
-                <span class="portal-step-badge" aria-hidden="true">2</span>
-                <span class="portal-step-label">Wait while we review your details</span>
+              <li class="portal-step-item portal-step-item--current" aria-current="step">
+                <span class="portal-step-badge portal-step-badge--current" aria-hidden="true">2</span>
+                <span class="portal-step-label portal-step-label--current">Wait while we review your details</span>
               </li>
               <li class="portal-step-item">
                 <span class="portal-step-badge" aria-hidden="true">3</span>
@@ -91,13 +98,13 @@
           </div>
           <div class="portal-next-card__divider" aria-hidden="true"></div>
           <div class="portal-next-card__right">
-            <span class="material-symbols-outlined portal-quiz-icon" aria-hidden="true">quiz</span>
-            <h3 class="portal-subtitle-2">Answer medical questionnaire</h3>
+            <span class="material-symbols-outlined portal-quiz-icon" aria-hidden="true">task_alt</span>
+            <h3 class="portal-subtitle-2">Medical questionnaire</h3>
             <p class="portal-body-1 portal-next-card__desc">
-              Please complete the questionnaire to the best of your ability. After submitting it, our patient
-              navigation team will review your medical information and prepare your trial search overview.
+              Thank you — we've received your answers. Our patient navigation team is reviewing your medical
+              information and will prepare your trial search overview next.
             </p>
-            <a href="questionnaire.html" class="portal-btn-primary">Complete questionnaire</a>
+            <a href="questionnaire.html" class="portal-btn-primary">View questionnaire</a>
           </div>
         </section>
 
