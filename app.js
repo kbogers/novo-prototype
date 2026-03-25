@@ -40,6 +40,9 @@
   });
 
   document.querySelectorAll('.trial-card__row').forEach((row) => {
-    row.addEventListener('click', (e) => e.preventDefault());
+    row.addEventListener('click', (e) => {
+      const href = row.getAttribute('href');
+      if (!href || href === '#') e.preventDefault();
+    });
   });
 })();

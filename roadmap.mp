@@ -18,6 +18,7 @@
 - **Hero CTAs (Mar 2026):** Buttons in `.hero__copy` use `align-self: flex-start` so they size to their label and sit left-aligned with the copy column (flex column default was stretching them full width).
 - **Hero titles (Mar 2026):** `.hero__title` uses `line-height: 1.2` instead of matching `font-size` 1:1 so wrapped headlines have comfortable vertical rhythm (desktop + tablet breakpoints).
 - **Hero padding parity (Mar 2026):** Removed `.hero__inner--physician { align-items: center; }` so the physician hero uses the same top alignment as the patient hero (`flex-start` on `.hero__inner`); vertical centering had made the sky band look like extra padding.
+- **Trial card links (Mar 2026):** Physician trial list rows use real `href`s (prototype search URL + mytomorrows.com). `app.js` only `preventDefault`s `.trial-card__row` clicks when `href` is missing or `#` so placeholder rows stay inert but linked rows navigate.
 
 ## Decisions
 
