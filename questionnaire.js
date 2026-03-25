@@ -120,7 +120,17 @@
       case 'radio':
       case 'select': {
         const t = optionLabel(step, answer);
-        return t || '—';
+        let out = t || '—';
+        if (
+          step.type === 'radio' &&
+          step.consent &&
+          step.consent.id &&
+          answers[step.consent.id] === true
+        ) {
+          const line = (step.consent.reviewLine || 'Data processing consent: Yes').trim();
+          out = `${out}\n\n${line}`;
+        }
+        return out;
       }
       case 'text':
       case 'textarea': {
@@ -256,8 +266,19 @@
       case 'text':
         return typeof v === 'string' && v.trim().length > 0;
       case 'radio':
-      case 'select':
-        return typeof v === 'string' && v.length > 0;
+      case 'select': {
+        const ok = typeof v === 'string' && v.length > 0;
+        if (!ok) return false;
+        if (
+          step.type === 'radio' &&
+          step.consent &&
+          step.consent.id &&
+          step.consent.required !== false
+        ) {
+          return answers[step.consent.id] === true;
+        }
+        return true;
+      }
       case 'checkbox':
         return Array.isArray(v) && v.length > 0;
       case 'contact': {
@@ -403,13 +424,14 @@
       fs.appendChild(leg);
       const list = document.createElement('div');
       list.className = 'intake-options';
-      (step.options || []).forEach((opt) => {
+      (step.options || []).forEach((opt, optIndex) => {
         const label = document.createElement('label');
         label.className = 'intake-option';
         const radio = document.createElement('input');
         radio.type = 'radio';
         radio.name = step.id;
         radio.value = opt.value;
+        if (optIndex === 0) radio.id = 'intake-control';
         radio.checked = val === opt.value;
         radio.addEventListener('change', () => {
           answers[step.id] = radio.value;
@@ -423,6 +445,34 @@
       });
       fs.appendChild(list);
       el.inputRoot.appendChild(fs);
+
+      const consentCfg = step.consent;
+      if (consentCfg && consentCfg.id && consentCfg.label) {
+        const cid = consentCfg.id;
+        const consentWrap = document.createElement('div');
+        consentWrap.className = 'intake-consent';
+        const consentLabel = document.createElement('label');
+        consentLabel.className = 'intake-consent__label';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.className = 'intake-consent__input';
+        cb.id = `${step.id}-${cid}`;
+        cb.name = cid;
+        cb.checked = answers[cid] === true;
+        if (consentCfg.required !== false) cb.setAttribute('aria-required', 'true');
+        cb.addEventListener('change', () => {
+          if (cb.checked) answers[cid] = true;
+          else delete answers[cid];
+          onChange();
+        });
+        const consentText = document.createElement('span');
+        consentText.className = 'intake-consent__text';
+        consentText.textContent = consentCfg.label;
+        consentLabel.appendChild(cb);
+        consentLabel.appendChild(consentText);
+        consentWrap.appendChild(consentLabel);
+        el.inputRoot.appendChild(consentWrap);
+      }
       return;
     }
 

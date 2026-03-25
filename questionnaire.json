@@ -1,5 +1,5 @@
 {
-  "flowId": "eligibility-v6",
+  "flowId": "eligibility-v7",
   "sidebarTitle": "Medical intake",
   "sidebarSubtitle": "Rare blood disease",
   "secureNote": "Information is captured and stored securely",
@@ -58,7 +58,12 @@
       "options": [
         { "value": "patient", "label": "Patient" },
         { "value": "caregiver", "label": "Caregiver" }
-      ]
+      ],
+      "consent": {
+        "id": "data-processing-consent",
+        "required": true,
+        "label": "The personal information filled in above is mine or that of the person whom I'm allowed to represent as caregiver. I hereby consent to the collection, storage, and processing of my/their personal data, including sensitive health information, by myTomorrows, for the purposes of contacting me and providing services that are relevant to my situation. Where applicable, I've obtained the necessary authorization to share such personal data. *"
+      }
     },
     {
       "id": "age",
