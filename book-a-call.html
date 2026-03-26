@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book a call — myTomorrows</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="book-page">
+    <a href="#book-main" class="skip-link">Skip to content</a>
+
+    <header class="book-header">
+      <div class="book-header__inner">
+        <a href="questionnaire.html" class="book-header__back">Back to questionnaire</a>
+        <a href="index.html" class="book-header__logo" aria-label="myTomorrows clinical trials home">
+          <img src="assets/logo-mytomorrows.svg" alt="" width="161" height="20" />
+        </a>
+      </div>
+    </header>
+
+    <main id="book-main" class="book-main">
+      <div class="book-card">
+        <div class="book-scheduler" aria-labelledby="book-scheduler-title">
+          <div class="book-scheduler__sidebar">
+            <div class="book-scheduler__brand">
+              <div class="book-scheduler__logo-ring" aria-hidden="true">
+                <img src="assets/logo-mytomorrows.svg" alt="" width="140" height="18" />
+              </div>
+            </div>
+            <h1 class="book-scheduler__title" id="book-scheduler-title">
+              Find a time to meet with myTomorrows
+            </h1>
+            <div class="book-scheduler__month" role="group" aria-label="Month">
+              <button type="button" class="book-scheduler__month-btn" id="book-prev-month" aria-label="Previous month">
+                <span class="material-symbols-outlined" aria-hidden="true">chevron_left</span>
+              </button>
+              <p class="book-scheduler__month-label" id="book-month-label">July 2025</p>
+              <button type="button" class="book-scheduler__month-btn" id="book-next-month" aria-label="Next month">
+                <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+              </button>
+            </div>
+            <div class="book-scheduler__cal-wrap">
+              <div class="book-scheduler__weekdays" aria-hidden="true">
+                <span>SUN</span><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span>
+              </div>
+              <div class="book-scheduler__grid" id="book-cal-grid" role="grid" aria-label="Calendar"></div>
+            </div>
+          </div>
+
+          <div class="book-scheduler__panel">
+            <div class="book-scheduler__field">
+              <label class="book-scheduler__label" for="book-duration">Meeting duration</label>
+              <select id="book-duration" class="book-scheduler__select" aria-describedby="book-duration-hint">
+                <option value="30" selected>30 mins</option>
+                <option value="45">45 mins</option>
+                <option value="60">60 mins</option>
+              </select>
+              <span id="book-duration-hint" class="visually-hidden">Choose how long the call should last</span>
+            </div>
+
+            <h2 class="book-scheduler__heading">What time works best?</h2>
+            <p class="book-scheduler__subhead" id="book-showing-times">Showing times for July 1, 2025</p>
+
+            <button type="button" class="book-scheduler__tz" id="book-tz-toggle" aria-expanded="false">
+              <span id="book-tz-label">UTC+02:00 (Europe) Central European Time</span>
+              <span class="material-symbols-outlined book-scheduler__tz-chev" aria-hidden="true">expand_more</span>
+            </button>
+            <p class="book-scheduler__tz-note" id="book-tz-note" hidden>
+              Timezone selection is a prototype placeholder; times are shown in your selected zone.
+            </p>
+
+            <div class="book-scheduler__slots-wrap">
+              <ul class="book-scheduler__slots" id="book-slots"></ul>
+            </div>
+            <p class="book-scheduler__live visually-hidden" id="book-selection-live" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <footer class="book-planner-footer">
+          <button type="button" class="book-planner-footer__cancel" id="book-cancel">Cancel</button>
+          <button type="button" class="book-planner-footer__submit" id="book-submit" disabled>
+            Book call
+          </button>
+        </footer>
+      </div>
+    </main>
+
+    <script src="book-a-call.js"></script>
+  </body>
+</html>

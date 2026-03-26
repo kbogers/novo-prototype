@@ -94,17 +94,24 @@
                 <span class="portal-step-badge" aria-hidden="true">4</span>
                 <span class="portal-step-label">Discuss your options</span>
               </li>
+              <li class="portal-step-item">
+                <span class="portal-step-badge" aria-hidden="true">5</span>
+                <span class="portal-step-label">Indicate your preferred trial site</span>
+              </li>
             </ol>
           </div>
           <div class="portal-next-card__divider" aria-hidden="true"></div>
           <div class="portal-next-card__right">
-            <span class="material-symbols-outlined portal-quiz-icon" aria-hidden="true">task_alt</span>
-            <h3 class="portal-subtitle-2">Medical questionnaire</h3>
-            <p class="portal-body-1 portal-next-card__desc">
-              Thank you — we've received your answers. Our patient navigation team is reviewing your medical
-              information and will prepare your trial search overview next.
+            <span class="material-symbols-outlined portal-quiz-icon" aria-hidden="true">calendar_month</span>
+            <h3 class="portal-subtitle-2">Your scheduled call</h3>
+            <p class="portal-body-1 portal-next-card__desc" id="portal-call-reminder">
+              Your call with your patient navigator is planned for
+              <span id="portal-call-reminder-date" class="portal-call-reminder__when"></span>
+              at
+              <span id="portal-call-reminder-time" class="portal-call-reminder__when"></span>
+              (your local time).
             </p>
-            <a href="questionnaire.html" class="portal-btn-primary">View questionnaire</a>
+            <a href="book-a-call.html" class="portal-btn-primary">Reschedule or book a call</a>
           </div>
         </section>
 
@@ -177,6 +184,53 @@
         if (first && welcomeEl) welcomeEl.textContent = first;
         if (name && userEl) userEl.textContent = name;
         else if (first && userEl && !name) userEl.textContent = first + " Patient";
+
+        const BOOKING_KEY = "novo-book-call-booking";
+        const MONTH_NAMES = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        /** Fallback when planner has not stored a slot (prototype demo). */
+        const MOCK_BOOKING = { y: 2025, m: 3, d: 15, time: "10:00 am" };
+
+        function formatBookingDate(y, m, d) {
+          return MONTH_NAMES[m] + " " + d + ", " + y;
+        }
+
+        function loadBooking() {
+          try {
+            var raw = sessionStorage.getItem(BOOKING_KEY);
+            if (!raw) return null;
+            var b = JSON.parse(raw);
+            if (
+              typeof b.y !== "number" ||
+              typeof b.m !== "number" ||
+              typeof b.d !== "number" ||
+              typeof b.time !== "string"
+            ) {
+              return null;
+            }
+            return b;
+          } catch (_) {
+            return null;
+          }
+        }
+
+        var booking = loadBooking() || MOCK_BOOKING;
+        var dateEl = document.getElementById("portal-call-reminder-date");
+        var timeEl = document.getElementById("portal-call-reminder-time");
+        if (dateEl) dateEl.textContent = formatBookingDate(booking.y, booking.m, booking.d);
+        if (timeEl) timeEl.textContent = booking.time;
       })();
     </script>
   </body>

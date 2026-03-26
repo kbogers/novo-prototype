@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Call booked — myTomorrows</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="book-page">
+    <a href="#book-confirm-main" class="skip-link">Skip to content</a>
+
+    <header class="book-header">
+      <div class="book-header__inner">
+        <a href="book-a-call.html" class="book-header__back">Back to planner</a>
+        <a href="index.html" class="book-header__logo" aria-label="myTomorrows clinical trials home">
+          <img src="assets/logo-mytomorrows.svg" alt="" width="161" height="20" />
+        </a>
+      </div>
+    </header>
+
+    <main id="book-confirm-main" class="book-confirm-main">
+      <div class="book-confirm-card">
+        <div class="book-confirm-hero">
+          <div class="book-confirm-icon" aria-hidden="true">
+            <span class="material-symbols-outlined book-confirm-icon__glyph">check</span>
+          </div>
+          <h1 class="book-confirm-headline">Your call with your patient navigator was successfully booked</h1>
+          <p class="book-confirm-body" id="book-confirm-copy">
+            You booked a call on <span id="book-confirm-date"></span> at <span id="book-confirm-time"></span>. Your
+            patient navigator will call you on <span id="book-confirm-phone"></span>. Create an account below to stay up
+            to date on your case.
+          </p>
+          <a
+            class="intake-done-cta book-confirm-cta"
+            id="book-confirm-create-account"
+            href="patient-home.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Create account</a
+          >
+        </div>
+      </div>
+    </main>
+
+    <script src="book-call-confirmed.js"></script>
+  </body>
+</html>

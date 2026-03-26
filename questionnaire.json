@@ -1,7 +1,7 @@
 {
-  "flowId": "eligibility-v7",
+  "flowId": "eligibility-v9",
   "sidebarTitle": "Medical intake",
-  "sidebarSubtitle": "Rare blood disease",
+  "sidebarSubtitle": "Sickle Cell Anemia",
   "secureNote": "Information is captured and stored securely",
   "review": {
     "eyebrow": "Summary",
@@ -16,6 +16,10 @@
       "title": "Create your myTomorrows account",
       "description": "Create your account to check your status, stay on top of your next steps, view and edit your medical information.",
       "cta": {
+        "label": "Book a call",
+        "href": "book-a-call.html"
+      },
+      "secondaryCta": {
         "label": "Create account",
         "href": "patient-home.html"
       }
@@ -132,22 +136,6 @@
       "showSkip": true,
       "placeholder": "",
       "rows": 6
-    },
-    {
-      "id": "contact-pref",
-      "type": "radio",
-      "title": "How would you prefer to be contacted if you may be a match?",
-      "subtitle": null,
-      "caregiverCopy": {
-        "title": "How would you prefer to be contacted if the patient may be a match?"
-      },
-      "required": true,
-      "showSkip": false,
-      "options": [
-        { "value": "phone", "label": "Phone" },
-        { "value": "email", "label": "Email" },
-        { "value": "either", "label": "Either" }
-      ]
     },
     {
       "id": "contact",

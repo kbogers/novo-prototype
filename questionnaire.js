@@ -24,6 +24,7 @@
     completeStep1Title: document.getElementById('intake-complete-step1-title'),
     completeStep1Desc: document.getElementById('intake-complete-step1-desc'),
     completeCreateAccount: document.getElementById('intake-complete-create-account'),
+    completeBookCall: document.getElementById('intake-complete-book-call'),
     completeStep2Title: document.getElementById('intake-complete-step2-title'),
     completeStep2P1: document.getElementById('intake-complete-step2-p1'),
     completeStep2P2: document.getElementById('intake-complete-step2-p2'),
@@ -570,6 +571,17 @@
     const faqIn = helpIn.faqCard && typeof helpIn.faqCard === 'object' ? helpIn.faqCard : {};
     const contactIn = helpIn.contactCard && typeof helpIn.contactCard === 'object' ? helpIn.contactCard : {};
     const ctaIn = step1In.cta && typeof step1In.cta === 'object' ? step1In.cta : {};
+    const secondaryCtaRaw = step1In.secondaryCta;
+    let secondaryCta = null;
+    if (secondaryCtaRaw !== false && secondaryCtaRaw != null && typeof secondaryCtaRaw === 'object') {
+      const href = typeof secondaryCtaRaw.href === 'string' ? secondaryCtaRaw.href.trim() : '';
+      if (href) {
+        secondaryCta = {
+          label: (secondaryCtaRaw.label || 'Create account').trim(),
+          href,
+        };
+      }
+    }
 
     const defaultP2 =
       'If we need more information before creating your overview, we will contact you by email within one week.';
@@ -591,9 +603,10 @@
           step1In.description ??
           'Create your account to check your status, stay on top of your next steps, view and edit your medical information.',
         cta: {
-          label: ctaIn.label ?? 'Create account',
-          href: ctaIn.href ?? 'patient-home.html',
+          label: ctaIn.label ?? 'Book a call',
+          href: ctaIn.href ?? 'book-a-call.html',
         },
+        secondaryCta,
       },
       step2: {
         title: step2In.title ?? 'Receive overview of clinical trial options',
@@ -649,9 +662,19 @@
     if (el.completeNextHeading) el.completeNextHeading.textContent = x.nextStepsHeading;
     if (el.completeStep1Title) el.completeStep1Title.textContent = x.step1.title;
     if (el.completeStep1Desc) el.completeStep1Desc.textContent = x.step1.description;
+    if (el.completeBookCall) {
+      el.completeBookCall.href = createAccountHref(x.step1.cta.href);
+      el.completeBookCall.textContent = x.step1.cta.label;
+    }
     if (el.completeCreateAccount) {
-      el.completeCreateAccount.href = createAccountHref(x.step1.cta.href);
-      el.completeCreateAccount.textContent = x.step1.cta.label;
+      const sec = x.step1.secondaryCta;
+      if (sec && sec.href) {
+        el.completeCreateAccount.hidden = false;
+        el.completeCreateAccount.href = createAccountHref(sec.href);
+        el.completeCreateAccount.textContent = sec.label;
+      } else {
+        el.completeCreateAccount.hidden = true;
+      }
     }
     if (el.completeStep2Title) el.completeStep2Title.textContent = x.step2.title;
     if (el.completeStep2P1) {

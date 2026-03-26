@@ -1,4 +1,11 @@
 (function () {
+  /* Landing page: drop persisted intake so the questionnaire always starts blank after returning here. */
+  try {
+    sessionStorage.removeItem('novo-intake-state');
+  } catch (_) {
+    /* ignore private mode / quota */
+  }
+
   const tabs = document.querySelectorAll('.role-tab[data-panel]');
   const panels = document.querySelectorAll('.role-panel[data-panel-id]');
 
