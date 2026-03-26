@@ -134,7 +134,7 @@ body {
 
 /* Landing page: Novo mark (logo.svg) vs wordmark on other pages */
 body#top .site-logo img {
-  height: 40px;
+  height: 52px;
   aspect-ratio: 104 / 74;
 }
 
@@ -2245,6 +2245,14 @@ a.intake-footer__continue:focus-visible {
   overflow: hidden;
 }
 
+.book-main__back {
+  width: 100%;
+  max-width: 1440px;
+  flex-shrink: 0;
+  margin-bottom: var(--space-4);
+  box-sizing: border-box;
+}
+
 .book-card {
   width: 100%;
   max-width: 1440px;
@@ -2416,6 +2424,11 @@ a.intake-footer__continue:focus-visible {
   gap: var(--space-4);
 }
 
+.book-header__inner--flush {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .book-header__back {
   color: var(--color-primary-700);
   font-weight: 500;
@@ -2457,31 +2470,8 @@ a.intake-footer__continue:focus-visible {
   overflow-y: auto;
 }
 
-.book-scheduler__brand {
-  display: flex;
-  justify-content: center;
-}
-
-.book-scheduler__logo-ring {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  background: var(--book-sidebar-text);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 var(--space-3);
-  box-sizing: border-box;
-}
-
-.book-scheduler__logo-ring img {
-  width: 100%;
-  max-width: 140px;
-  height: auto;
-}
-
 .book-scheduler__title {
-  margin: var(--space-6) 0 0;
+  margin: 0;
   font-size: var(--fs-headline-6);
   font-weight: 600;
   line-height: 1.2;
@@ -2744,6 +2734,11 @@ a.intake-footer__continue:focus-visible {
     flex-wrap: wrap;
     height: auto;
     padding: var(--space-3) var(--space-4);
+  }
+
+  .book-header__inner--flush {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .book-header {
