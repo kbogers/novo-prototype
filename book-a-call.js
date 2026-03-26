@@ -149,16 +149,16 @@
 
   function persistBookingAndGo() {
     if (!selectedSlot) return;
+    const payload = JSON.stringify({
+      y: selectedY,
+      m: selectedM,
+      d: selectedD,
+      time: selectedSlot,
+    });
     try {
-      sessionStorage.setItem(
-        BOOKING_KEY,
-        JSON.stringify({
-          y: selectedY,
-          m: selectedM,
-          d: selectedD,
-          time: selectedSlot,
-        })
-      );
+      sessionStorage.setItem(BOOKING_KEY, payload);
+      // Same-origin shared store so the slot survives opening the portal in a new tab (sessionStorage does not).
+      localStorage.setItem(BOOKING_KEY, payload);
     } catch (_) {
       /* ignore */
     }

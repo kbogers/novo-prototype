@@ -13,8 +13,8 @@
     "lead": "We received your medical information",
     "nextStepsHeading": "Next steps:",
     "step1": {
-      "title": "Create your myTomorrows account",
-      "description": "Create your account to check your status, stay on top of your next steps, view and edit your medical information.",
+      "title": "Book a call with your patient navigator",
+      "description": "Let us know when we can call you to discuss your options. You can also create an account to check your status and stay on top of your next steps.",
       "cta": {
         "label": "Book a call",
         "href": "book-a-call.html"

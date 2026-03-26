@@ -207,20 +207,25 @@
           return MONTH_NAMES[m] + " " + d + ", " + y;
         }
 
+        function parseBooking(raw) {
+          if (!raw) return null;
+          var b = JSON.parse(raw);
+          if (
+            typeof b.y !== "number" ||
+            typeof b.m !== "number" ||
+            typeof b.d !== "number" ||
+            typeof b.time !== "string"
+          ) {
+            return null;
+          }
+          return b;
+        }
+
         function loadBooking() {
           try {
-            var raw = sessionStorage.getItem(BOOKING_KEY);
-            if (!raw) return null;
-            var b = JSON.parse(raw);
-            if (
-              typeof b.y !== "number" ||
-              typeof b.m !== "number" ||
-              typeof b.d !== "number" ||
-              typeof b.time !== "string"
-            ) {
-              return null;
-            }
-            return b;
+            var fromSession = parseBooking(sessionStorage.getItem(BOOKING_KEY));
+            if (fromSession) return fromSession;
+            return parseBooking(localStorage.getItem(BOOKING_KEY));
           } catch (_) {
             return null;
           }

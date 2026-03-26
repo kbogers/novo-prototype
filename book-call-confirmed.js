@@ -54,20 +54,25 @@
     }
   }
 
+  function parseBooking(raw) {
+    if (!raw) return null;
+    const b = JSON.parse(raw);
+    if (
+      typeof b.y !== 'number' ||
+      typeof b.m !== 'number' ||
+      typeof b.d !== 'number' ||
+      typeof b.time !== 'string'
+    ) {
+      return null;
+    }
+    return b;
+  }
+
   function loadBooking() {
     try {
-      const raw = sessionStorage.getItem(BOOKING_KEY);
-      if (!raw) return null;
-      const b = JSON.parse(raw);
-      if (
-        typeof b.y !== 'number' ||
-        typeof b.m !== 'number' ||
-        typeof b.d !== 'number' ||
-        typeof b.time !== 'string'
-      ) {
-        return null;
-      }
-      return b;
+      const fromSession = parseBooking(sessionStorage.getItem(BOOKING_KEY));
+      if (fromSession) return fromSession;
+      return parseBooking(localStorage.getItem(BOOKING_KEY));
     } catch (_) {
       return null;
     }
