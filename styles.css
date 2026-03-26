@@ -1693,6 +1693,109 @@ a.intake-footer__continue:focus-visible {
   font-weight: 600;
 }
 
+.portal-nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.portal-nav__locale {
+  position: relative;
+}
+
+.portal-nav__locale-trigger {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--pt-nav-muted);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 20px;
+  background: transparent;
+}
+
+.portal-nav__locale-trigger::-webkit-details-marker {
+  display: none;
+}
+
+.portal-nav__locale-trigger .portal-nav__chev {
+  transition: transform 0.15s ease;
+}
+
+.portal-nav__locale[open] .portal-nav__locale-trigger .portal-nav__chev {
+  transform: rotate(180deg);
+}
+
+.portal-nav__locale-flag {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.portal-nav__locale-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.portal-nav__locale-sep {
+  opacity: 0.65;
+}
+
+.portal-nav__locale-panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 220px;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: var(--pt-green-950);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  z-index: 120;
+}
+
+.portal-nav__locale-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--pt-nav-muted);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.portal-nav__locale-option:hover {
+  background: var(--pt-primary-800);
+  color: var(--pt-surface);
+}
+
+.portal-nav__locale-option--current {
+  color: var(--pt-surface);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.portal-nav__locale-option-tz {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
 .portal-nav__user {
   display: flex;
   align-items: center;
@@ -2199,9 +2302,11 @@ a.intake-footer__continue:focus-visible {
     min-height: 56px;
   }
 
-  .portal-nav__user {
+  .portal-nav__actions {
     width: 100%;
     justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   .portal-main__row {

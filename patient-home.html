@@ -31,12 +31,42 @@
           <a href="#" class="portal-nav__item">Medical profile</a>
           <a href="#" class="portal-nav__item">Documents</a>
         </nav>
-        <div class="portal-nav__user">
-          <span class="portal-nav__avatar" aria-hidden="true">
-            <span class="material-symbols-outlined">person_add</span>
-          </span>
-          <span class="portal-nav__user-name" id="portal-user-name">Peter Patient</span>
-          <span class="material-symbols-outlined portal-nav__chev" aria-hidden="true">keyboard_arrow_down</span>
+        <div class="portal-nav__actions">
+          <details class="portal-nav__locale" id="portal-locale-details" aria-label="Language and time zone">
+            <summary class="portal-nav__locale-trigger">
+              <span class="portal-nav__locale-flag" aria-hidden="true">🇬🇧</span>
+              <span class="portal-nav__locale-meta">
+                <span class="portal-nav__locale-lang">English</span>
+                <span class="portal-nav__locale-sep" aria-hidden="true">·</span>
+                <span class="portal-nav__locale-tz">CET</span>
+              </span>
+              <span class="material-symbols-outlined portal-nav__chev" aria-hidden="true">keyboard_arrow_down</span>
+            </summary>
+            <div class="portal-nav__locale-panel">
+              <button type="button" class="portal-nav__locale-option portal-nav__locale-option--current" aria-current="true">
+                <span aria-hidden="true">🇬🇧</span>
+                <span>English</span>
+                <span class="portal-nav__locale-option-tz">CET</span>
+              </button>
+              <button type="button" class="portal-nav__locale-option">
+                <span aria-hidden="true">🇳🇱</span>
+                <span>Nederlands</span>
+                <span class="portal-nav__locale-option-tz">CET</span>
+              </button>
+              <button type="button" class="portal-nav__locale-option">
+                <span aria-hidden="true">🇩🇪</span>
+                <span>Deutsch</span>
+                <span class="portal-nav__locale-option-tz">CET</span>
+              </button>
+            </div>
+          </details>
+          <div class="portal-nav__user">
+            <span class="portal-nav__avatar" aria-hidden="true">
+              <span class="material-symbols-outlined">person_add</span>
+            </span>
+            <span class="portal-nav__user-name" id="portal-user-name">Peter Patient</span>
+            <span class="material-symbols-outlined portal-nav__chev" aria-hidden="true">keyboard_arrow_down</span>
+          </div>
         </div>
       </div>
     </header>
@@ -184,6 +214,30 @@
         if (first && welcomeEl) welcomeEl.textContent = first;
         if (name && userEl) userEl.textContent = name;
         else if (first && userEl && !name) userEl.textContent = first + " Patient";
+
+        var localeDetails = document.getElementById("portal-locale-details");
+        if (localeDetails) {
+          var flagEl = localeDetails.querySelector(".portal-nav__locale-flag");
+          var langEl = localeDetails.querySelector(".portal-nav__locale-lang");
+          var tzEl = localeDetails.querySelector(".portal-nav__locale-tz");
+          var localeOptions = localeDetails.querySelectorAll(".portal-nav__locale-option");
+          localeOptions.forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var spans = btn.querySelectorAll("span");
+              var tz = btn.querySelector(".portal-nav__locale-option-tz");
+              if (flagEl && spans[0]) flagEl.textContent = spans[0].textContent;
+              if (langEl && spans[1]) langEl.textContent = spans[1].textContent;
+              if (tzEl && tz) tzEl.textContent = tz.textContent;
+              localeOptions.forEach(function (o) {
+                var on = o === btn;
+                o.classList.toggle("portal-nav__locale-option--current", on);
+                if (on) o.setAttribute("aria-current", "true");
+                else o.removeAttribute("aria-current");
+              });
+              localeDetails.removeAttribute("open");
+            });
+          });
+        }
 
         const BOOKING_KEY = "novo-book-call-booking";
         const MONTH_NAMES = [
